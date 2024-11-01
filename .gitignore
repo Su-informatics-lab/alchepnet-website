@@ -1,3 +1,9 @@
+# Miscellaneous
+.DS_Store
+.vscode
+.idea
+*.zip
+
 # Local .terraform directories
 **/.terraform/*
 
