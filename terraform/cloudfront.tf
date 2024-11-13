@@ -37,7 +37,7 @@ module "cloudfront" {
 
   origin = {
     s3-website = {
-      domain_name           = module.s3_bucket.s3_bucket_bucket_regional_domain_name
+      domain_name           = module.website_bucket.s3_bucket_bucket_regional_domain_name
       origin_access_control = "s3-website"  # Must match the key in origin_access_control
     }
   }
@@ -55,7 +55,7 @@ module "cloudfront" {
 
 # Add bucket policy to allow access from the OAI
 resource "aws_s3_bucket_policy" "bucket_policy" {
-  bucket = module.s3_bucket.s3_bucket_id
+  bucket = module.website_bucket.s3_bucket_id
 
   policy = jsonencode({
     "Version" : "2008-10-17",
@@ -68,7 +68,7 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
           "Service" : "cloudfront.amazonaws.com"
         },
         "Action" : "s3:GetObject",
-        "Resource" : "${module.s3_bucket.s3_bucket_arn}/*",
+        "Resource" : "${module.website_bucket.s3_bucket_arn}/*",
         "Condition" : {
           "StringEquals" : {
             "AWS:SourceArn" : module.cloudfront.cloudfront_distribution_arn

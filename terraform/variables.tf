@@ -25,12 +25,17 @@ variable "domain" {
   type        = string
 }
 
-# variable "website_bucket" {
-#   description = "Name of the S3 bucket to create for the website"
-#   type        = string
-# }
-
 variable "environment" {
   description = "Environment to deploy resources"
+  type        = string
+}
+
+variable "repository" {
+  description = "Name of the GitHub repository (org/repo)"
+  type        = string
+}
+
+variable "codestar" {
+  description = "Name of the CodeStar connection"
   type        = string
 }
