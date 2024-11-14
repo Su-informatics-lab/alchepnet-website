@@ -1,8 +1,8 @@
 data "aws_caller_identity" "current" {}
 
 locals {
-  sanitized_domain          = replace(var.domain, ".", "_")
-  website_build_project     = "${local.sanitized_domain}-website-deployment"
+  sanitized_domain           = replace(var.domain, ".", "-")
+  website_build_project      = "${local.sanitized_domain}-website-deployment"
   invalidation_build_project = "${local.sanitized_domain}-website-invalidation"
 }
 
@@ -331,7 +331,7 @@ module "codepipeline_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "~> 4.0"
 
-  bucket_prefix = "${var.domain}-website-codepipeline"
+  bucket = "${var.domain}-website-codepipeline"
 
   tags = local.common_tags
 
@@ -349,7 +349,7 @@ resource "aws_codepipeline" "codepipeline" {
   execution_mode = "QUEUED"
 
   artifact_store {
-    location = module.codepipeline_bucket.s3_bucket_arn
+    location = module.codepipeline_bucket.s3_bucket_id
     type     = "S3"
   }
 

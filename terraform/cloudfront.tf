@@ -13,7 +13,7 @@ module "cloudfront" {
   default_root_object = "index.html"
 
   default_cache_behavior = {
-    target_origin_id       = "s3-website"  # This needs to match origin_id below
+    target_origin_id       = "s3-website" # This needs to match origin_id below
     viewer_protocol_policy = "redirect-to-https"
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
@@ -38,7 +38,7 @@ module "cloudfront" {
   origin = {
     s3-website = {
       domain_name           = module.website_bucket.s3_bucket_bucket_regional_domain_name
-      origin_access_control = "s3-website"  # Must match the key in origin_access_control
+      origin_access_control = "s3-website" # Must match the key in origin_access_control
     }
   }
 

@@ -4,3 +4,5 @@ region            = "us-east-1"     // AWS region
 profile           = "profile-name"  // AWS profile
 domain            = "domain-name"   // Website domain
 environment       = "Dev"           // Environment
+repository        = "myorg/myrepo"  //Name of the GitHub repository (org/repo)
+codestar          = "mygitops"      //Name of the CodeStar connection
