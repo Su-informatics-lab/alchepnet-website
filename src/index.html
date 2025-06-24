@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Alcoholic Hepatatis Network">
+    <meta name="description" content="Alcohol-associated Hepatitis Network">
     <meta name="author" content="AlcHepNet">
 	<meta name="og:image" content="./images/Logo_AlcHepNet_2_Crop.jpg">
     <link rel="icon" href="favicon.ico">
-    <title>AlcHepNet - Alcoholic Hepatitis Network</title>
+    <title>AlcHepNet - Alcohol-associated Hepatitis Network</title>
     <!-- <link href="https://ummscwmuhs.quickbase.com/up/bn79rmeux/g/re/eg/va/bootstrap.min.css" rel="stylesheet"> -->
 	<link href="bootstrap.min.css" rel="stylesheet">
 	<link href="main.css" rel="stylesheet">
@@ -27,23 +27,35 @@
 				<a class="dropdown-toggle btn" id="clinical-trials" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clinical Trials</a>
 				<ul class="dropdown-menu" aria-labelledby="clinical-trials">
 					<li class="dropdown-submenu">
-						<a class="dropdown-item dropdown-toggle" id="obs-trial" href="#">Observational Trial</a>
-						<ul class="dropdown-menu" aria-labelledby="obs-trial">
-							<li><a class="dropdown-item" href="eligibility.html">Eligibility</a></li>
-							<li><a class="dropdown-item" href="executive-summary.html">Executive Summary</a></li>
+						<a class="dropdown-item dropdown-toggle" id="itaald-trial" href="#">ITAALD Trial</a>
+						<ul class="dropdown-menu" aria-labelledby="itaald-trial">
+              <li><a class="dropdown-item" href="itaald-eligibility.html">Eligibility</a></li>
+							<li><a class="dropdown-item" href="itaald-executive-summary.html">Executive Summary</a></li>
 						</ul>
 					</li>
 					<li class="dropdown-divider"></li>
 					<li class="dropdown-submenu">
-						<a class="dropdown-item dropdown-toggle" id="int-trial" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Interventional Trial</a>
-						<ul class="dropdown-menu" aria-labelledby="int-trial">
-							<li><a class="dropdown-item" href="interventional-eligibility.html">Eligibility</a></li>
-							<li><a class="dropdown-item" href="interventional-executive-summary.html">Executive Summary</a></li>
+						<a class="dropdown-item dropdown-toggle" id="legacy-studies" href="#">Legacy Studies</a>
+						<ul class="dropdown-menu" aria-labelledby="legacy-studies">
+							<li class="dropdown-submenu">
+								<a class="dropdown-item dropdown-toggle" id="obs-study" href="#">Observational Study</a>
+								<ul class="dropdown-menu" aria-labelledby="obs-study">
+                  <li><a class="dropdown-item" href="eligibility.html">Eligibility</a></li>
+									<li><a class="dropdown-item" href="executive-summary.html">Executive Summary</a></li>
+								</ul>
+							</li>
+							<li class="dropdown-divider"></li>
+							<li class="dropdown-submenu">
+								<a class="dropdown-item dropdown-toggle" id="int-trial" href="#">Interventional Trial</a>
+								<ul class="dropdown-menu" aria-labelledby="int-trial">
+                  <li><a class="dropdown-item" href="interventional-eligibility.html">Eligibility</a></li>
+									<li><a class="dropdown-item" href="interventional-executive-summary.html">Executive Summary</a></li>
+								</ul>
+							</li>
 						</ul>
 					</li>
-					
 				</ul>
-            </li>
+			</li>
             <li class="nav-item">
               <a class="nav-link" href="publications.html">Publications &amp; Resources</a>
             </li>
@@ -53,8 +65,6 @@
 
           </ul>
           <span class="navbar-text" >
-			<small><a class="nav-link" href="https://ummscwmuhs.quickbase.com/db/bkg46867d">Internal</a></small><br>
-			<small><a class="nav-link" href="https://arcsapps.umassmed.edu/redcap/redcap_v8.9.2/index.php?pid=4553">UMMS REDCap</a></small><br>
 			<small><a class="nav-link" href="https://redcap.uits.iu.edu/">IU REDCap</a></small><br>
 			</span>
 
@@ -93,7 +103,8 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="third-slide" src="images/lib-of-congress-gov-work.jpg" alt="Third slide">
+            <img class="third-slide" src="images/nih-building.jpg" alt="Third slide">
+            <!--img source: https://visualsonline.cancer.gov/details.cfm?imageid=11440 -->
             <div class="container">
               <div class="carousel-caption" style="background-color: rgba(1,1,1,0.03); border-radius: 5px;">
                 <h1>Publications and Resources.</h1>
@@ -129,7 +140,7 @@
         <div class="row featurette">
           <div class="col">
             <h2 class="featurette-heading">About AlcHepNet</h2>
-            <p class="lead">The Alcoholic Hepatitis Network project, AlcHepNet, comprised of ten leading partner institutions in the field, will collect and organize patient information, associated data, and samples that can help shed greater light on this disease. Combined, these approaches will improve treatment and how we care for patients with this devastating liver condition.</p>
+            <p class="lead">The Alcohol-associated Hepatitis Network project, AlcHepNet, comprised of ten leading partner institutions in the field, will collect and organize patient information, associated data, and samples that can help shed greater light on this disease. Combined, these approaches will improve treatment and how we care for patients with this devastating liver condition.</p>
           	<div class="float-md-right ml-1 twitter-box">
 		  <!-- <a class="twitter-timeline" data-height="600" href="https://twitter.com/JoshuaRumbut/lists/alcoholic-hepatitis?ref_src=twsrc%5Etfw">A Twitter List by JoshuaRumbut</a> --> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           	<a class="twitter-timeline" data-height="600" href="https://twitter.com/AlcHepNet/lists/alchepnet?ref_src=twsrc%5Etfw">A Twitter List by AlcHepNet</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -137,12 +148,16 @@
           	</div>
 
             
-		<p class="lead">Alcoholic hepatitis (AH) is a leading cause of liver-related morbidity and mortality. This network represents a coordinated submission of several NIAAA-funded consortia that have come together as the Alcoholic Hepatitis Network (AlcHepNet). Collectively, the network will synergize efforts and expertise to better understand AH. The network aims to:
+		<p class="lead">Alcohol-associated hepatitis (AH) is a leading cause of liver-related morbidity and mortality. This network represents a coordinated submission of several NIAAA-funded consortia that have come together as the Alcohol-associated Hepatitis Network (AlcHepNet). Collectively, the network will synergize efforts and expertise to better understand AH. The network aims to:
 		</p>
-		<ol class="desc-list">
-			<li>To collect and store clinical data to facilitate investigations of the epidemiology, diagnosis, pathophysiology, natural history, and treatment of alcoholic hepatitis.</li>
-			<li>To develop a bio-specimen bank comprised of plasma, DNA, and other biological specimens obtained from patients with alcoholic hepatitis, heavy drinkers without clinical liver disease.</li>
-		</ol>	
+		<p class="lead">
+			Develop a multicenter, randomized, double-blinded, placebo-controlled trial focused on the treatment of severe alcohol-associated hepatitis (sAH) and alcohol use disorder (AUD).
+		</p>
+		<p class="lead">
+			The primary purpose study is to determine whether subjects receiving AUD treatments combined with sAH therapies will improve alcohol and liver-related events at 6 months compared to usual care for AUD. Patients will receive either integrated treatment with acamprosate and counseling or standard care with brief advice and referral to a 12-step program.
+		</p>
+		<p class="lead">
+			The secondary purpose of the study is to determine if F-652 is safe and effective in treating severe alcohol-associated hepatitis when compared to prednisone. Subjects will receive F-652 on days 1 and 7 or prednisone for 28 days. Outcomes will be measured by overall survival at 90 days.
 		</p>
 		<!-- <p class="lead">A prospective, multicenter, observational study of patients with AH and suitable controls will serve as the foundation for conducting novel mechanistic and therapeutic studies. This randomized phase 2B clinical trial will study treatments of granulocyte colony stimulating factor G-CSF versus Anakinra (plus zinc) versus standard medical therapy with Prednisone in patients with severe AH. This will test the hypothesis that both active treatment arms with G-CSF and the IL-1 receptor antagonist Anakinra (plus zinc) are superior to the standard of care (i.e. Prednisone) in patients with severe AH. The choice of these agents is based on: 
 		</p>
@@ -164,7 +179,7 @@
         <div class="row featurette">
           <div class="col">
           <h2 class="featurette-heading">AlcHepNet Organizations</h2>
-            <img class="org-logo img-fluid mx-auto" src="new-site-logos.png" alt="Participating organization logos"/>
+            <img class="org-logo img-fluid mx-auto" src="sites_20250610.png" alt="Participating organization logos"/>
           </div>
         </div>
 		
@@ -184,7 +199,7 @@
       <footer class="container">
 	  <div class="row">
         <div class="col text-left">
-        <p>&copy; 2017-2018 Alcoholic Hepatitis Network <!-- &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> --></p>
+        <p>&copy; 2017-2025 Alcohol-associated Hepatitis Network <!-- &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> --></p>
 		</div>
 		 <div class="col text-right">
 		<p class="float-right"><a href="#">Back to top</a></p>
@@ -198,6 +213,7 @@
     <script src="jquery-3.3.1.slim.min.js"></script>
     <script src="popper.min.js"></script>
     <script src="bootstrap.min.js"></script>
+    <script src="dropdown.js"></script>
 	<script src="main.js"></script>
   </body>
 </html>

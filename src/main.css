@@ -115,6 +115,13 @@ abbr[title] {
   height: 32rem;
 }
 
+.carousel-item img {
+  width: 100%;
+  height: 512px;
+  object-fit: cover;
+  object-position: center;
+}
+
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
