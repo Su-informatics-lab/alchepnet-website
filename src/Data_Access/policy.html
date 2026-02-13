@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Policy">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Policy - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <!-- Policy Section -->
+      <div class="staff-section">
+        <div class="row featurette">
+          <div class="col">
+            <h3 class="section-title">Data Request Policy</h3>
+          </div>
+        </div>
+        <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col lead">
+            <p>
+              To apply for AlcHepNet data, the investigator must meet the following criteria:
+            </p>
+
+            <ol>
+            <li>Funding should be available</li>
+            <li>Any AlcHepNet Steering Committee Principal Investigator (SC PIs) is eligible to apply</li>
+            <li>Non-AlcHepNet affiliates can apply accompanied by the SC PI as their sponsor</li>
+            <li><strong>Must have prior approval from the AlcHepNet publications and ancillary study committee
+                (PAC)</strong></li>
+            <li>IU DCC will only offer data within the scope of SC PI's proposal. Additional data requests will be
+              reviewed by PAC for amended approval. If original data (e.g, omics or genotyping, or cytokines) are
+              generated on AHN samples at the investigator's site, those data must be first deposited with the DCC prior
+              to DCC transferring the associated phenotyping data to the investigator. The investigator agrees not to
+              share the phenotype data to a third party without written approval from the AHN DCC or
+              Publications/Ancillary Studies or Steering Committees.</li>
+            <li>If using genomic data, SC PI must follow NIH's genomic data sharing policy and procedures. If not, please
+              skip</li>
+
+            <ol type="a" style="margin-left: 20px">
+              <li><strong>Please reference policies at the following link, agree to the following, and sign below: <a
+                    href="https://grants.nih.gov/grants/guide/notice-files/not-od-14-124.html"
+                    target="_blank">https://grants.nih.gov/grants/guide/notice-files/not-od-14-124.html</a></strong></li>
+              <li>Using the data only for the approved research.</li>
+              <li>Protecting data confidentiality.</li>
+              <li>Following, as appropriate, all applicable national, tribal, and state laws and regulations, as well as
+                relevant institutional policies and procedures for handling genomic data.</li>
+              <li>Not attempting to identify individual participants from whom the data were obtained.</li>
+              <li>Not selling any of the data obtained from NIH-designated data repositories.</li>
+              <li>Not sharing any of the data obtained from controlled-access NIH-designated data repositories with
+                individuals other than those listed in the data access request.</li>
+              <li>Agreeing to the listing of a summary of approved research uses in dbGaP along with the investigator's
+                name and organizational affiliation.</li>
+              <li>Agreeing to report any violation of the GDS Policy to the appropriate DAC(s) as soon as it is
+                discovered.</li>
+              <li>Reporting research progress using controlled-access datasets through annual access renewal requests or
+                project close-out reports.</li>
+              <li>Acknowledging in all oral or written presentations, disclosures, or publications the contributing
+                investigator(s) who conducted the original study, the funding organization(s) that supported the work, the
+                specific dataset(s) and applicable accession number(s), and the NIH-designated data repositories through
+                which the investigator accessed any data.</li>
+            </ol>
+            <div style="margin-top: 40px; margin-bottom: 40px;">
+              <div style="border-bottom: 2px solid #000; width: 100%; margin-bottom: 10px;"></div>
+              <div style="font-size: 1.2em; color: #000;">Printed Name/Signature of PI</div>
+            </div>
+          </ol>
+          </div>
+        </div>
+      </div>
+      <div class="staff-section">
+        <div class="row featurette">
+          <div class="col lead">
+            <h3 class="section-title">Data Request Process</h3>
+
+          <p>
+            <i class="fas fa-check"></i> Data request can be submitted by the PIs of the AlcHepNet consortium. Internal
+            and external collaborators are encouraged, but the actual request must be submitted by one of the PIs. Data
+            requests by the PI automatically imply he/she is responsible for completing the study in a timely and rigorous
+            fashion, avoids "mission creep" and abides by other AlcHepNet policies.
+          </p>
+
+          <p>
+            <i class="fas fa-check"></i> Request process
+          <ol type="a" style="margin-left: 20px">
+            <li>Savannah will send approval from ancillary study/publication proposal. With this approval, she will send the data dictionary for PI to review</li>
+            <li>PI will create a table of data for request. Table should include:</li>
+            <ol type="i" style="margin-left: 20px">
+              <li>Subjects to include (i.e., healthy controls, those with 90-day mortality, RCT, etc.)</li>
+              <li>Time points</li>
+              <li>Specific data points such as those with liver transplant, AKI, PT/INR. <u>Not "outcome related clinical data"</u></li>
+            </ol>
+            <li>Savannah will subsequently send to IU DCC for review</li>
+            <li>IU DCC will prioritize requests as they come in. Requests can take 1-4 weeks depending on queue</li>
+          </ol>
+        </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function () {
+      $("#navbar-include").load("../navbar.html", function () {
+        $("#navbar-include a").each(function () {
+          var href = $(this).attr("href");
+          if (href && !href.startsWith("http") && !href.startsWith("#")) {
+
+            if (href.startsWith("Data_Access/")) {
+              $(this).attr("href", href.replace("Data_Access/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+
+        $("#navbar-include img").each(function () {
+          var src = $(this).attr("src");
+          if (src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function () {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+
+</html>

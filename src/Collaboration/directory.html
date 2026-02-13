@@ -1,0 +1,1297 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Investigators Directory">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Investigators Directory - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .directory-container {
+      display: flex;
+      gap: 30px;
+      margin-top: 40px;
+      margin-bottom: 60px;
+    }
+
+    /* Filter Sidebar */
+    .filter-sidebar {
+      flex: 0 0 320px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 25px;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .filter-sidebar h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .filter-group {
+      margin-bottom: 25px;
+    }
+
+    .filter-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .filter-group select {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      background-color: #fff;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 35px;
+    }
+
+    .filter-group select:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+
+    .filter-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .btn-apply-filter {
+      flex: 1;
+      padding: 12px 20px;
+      background-color: var(--btn-primary-bg, #80abc1);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-apply-filter:hover {
+      background-color: var(--btn-primary-hover, #0056b3);
+    }
+
+    .btn-clear-filter {
+      padding: 12px 20px;
+      background-color: transparent;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-clear-filter:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* Results Section */
+    .results-section {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .results-header {
+      margin-bottom: 30px;
+    }
+
+    .results-header h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .results-count {
+      color: #666;
+      font-size: 1rem;
+    }
+
+    /* Researcher Card */
+    .researcher-card {
+      display: flex;
+      gap: 20px;
+      padding: 25px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      transition: box-shadow 0.3s;
+    }
+
+    .researcher-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .researcher-avatar {
+      flex-shrink: 0;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #e0e0e0;
+    }
+
+    .researcher-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .researcher-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .researcher-name-section {
+      flex: 1;
+    }
+
+    .researcher-name {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .researcher-role {
+      display: inline-block;
+      padding: 3px 10px;
+      background-color: #e7f3ff;
+      color: #0066cc;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      margin-right: 6px;
+    }
+
+    .researcher-group {
+      display: inline-block;
+      padding: 3px 10px;
+      background-color: #d4edff;
+      color: #0056a3;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      margin-right: 6px;
+    }
+
+    .researcher-institution {
+      color: #555;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+
+    .researcher-bio {
+      color: #666;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    .researcher-email {
+      color: #0066cc;
+      font-size: 0.9rem;
+      margin-top: 5px;
+      text-decoration: none;
+    }
+
+    .researcher-email:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .directory-container {
+        flex-direction: column;
+      }
+
+      .filter-sidebar {
+        position: static;
+        width: 100%;
+      }
+
+      .researcher-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .researcher-avatar {
+        margin: 0 auto;
+      }
+
+      .researcher-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container">
+      <h1 class="page-title">Directory</h1>
+
+      <div class="directory-container">
+        <!-- Filter Sidebar -->
+        <aside class="filter-sidebar">
+          <h3>Filter Directory</h3>
+
+          <div class="filter-group">
+            <label for="groupFilter">Personnel Group</label>
+            <select id="groupFilter">
+              <option value="">All</option>
+              <option value="Study Staff">Study Staff</option>
+              <option value="Coordinators">Coordinators</option>
+              <option value="Pharmacists">Pharmacists</option>
+              <option value="DSMB Members">DSMB Members</option>
+              <option value="Steering Committee">Steering Committee</option>
+              <option value="Clinical Sub-committee">Clinical Sub-committee</option>
+              <option value="Publication and Ancillary Study Committee">Publication and Ancillary Study Committee (PAC)</option>
+              <option value="Data Science Committee">Data Science Committee</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="roleFilter">Roles on Project</label>
+            <select id="roleFilter">
+              <option value="">All</option>
+              <option value="PI">Principal Investigator (PI)</option>
+              <option value="Investigator">Investigator</option>
+              <option value="Statistician">Statistician</option>
+              <option value="Project Scientist">Project Scientist</option>
+              <option value="Program Officer">Program Officer</option>
+              <option value="Safety Officer">Safety Officer</option>
+              <option value="Program Manager">Program Manager</option>
+              <option value="Data Manager">Data Manager</option>
+              <option value="Monitor">Monitor</option>
+              <option value="Nurse Manager">Nurse Manager</option>
+              <option value="Lead Coordinator">Lead Coordinator</option>
+              <option value="Coordinator">Coordinator</option>
+              <option value="Pharmacist">Pharmacist</option>
+              <option value="Chair">Committee Chair</option>
+              <option value="Co-Chair">Committee Co-Chair</option>
+              <option value="Member">Committee Member</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="institutionFilter">Institution</label>
+            <select id="institutionFilter">
+              <option value="">All</option>
+              <option value="NIAAA">NIAAA</option>
+              <option value="Indiana University">Indiana University (IU DCC)</option>
+              <option value="Cleveland Clinic">Cleveland Clinic</option>
+              <option value="Mayo Clinic">Mayo Clinic</option>
+              <option value="Virginia Commonwealth University">Virginia Commonwealth University</option>
+              <option value="University of Louisville">University of Louisville</option>
+              <option value="UT Southwestern">UT Southwestern</option>
+              <option value="DSMB">DSMB</option>
+            </select>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn-apply-filter" onclick="applyFilters()">Apply filters</button>
+            <button class="btn-clear-filter" onclick="clearFilters()">Clear</button>
+          </div>
+        </aside>
+
+        <!-- Results Section -->
+        <section class="results-section">
+          <div class="results-header">
+            <h3>Directory Results</h3>
+            <p class="results-count"><span id="resultsCount">0</span> researchers found</p>
+          </div>
+
+          <div id="researchersList">
+            <!-- Researcher cards will be dynamically inserted here -->
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    // Researchers data
+    const researchers = [
+      // NIAAA
+      {
+        name: "H. Joe Wang, PhD",
+        roles: {
+          "Study Staff": "Project Scientist",
+          "Publication and Ancillary Study Committee": "Member"
+        },
+        group: ["Study Staff", "Publication and Ancillary Study Committee"],
+        institution: "NIAAA",
+        title: "Project Scientist",
+        committees: "Member, Publication and Ancillary Study Committee",
+        email: "wangh4@mail.nih.gov",
+        image: "../images/committees/placeholder.svg",
+        bio: "Project Scientist, PAC Member"
+      },
+      {
+        name: "Peter Gao, MD",
+        role: "Site Program Officer",
+        group: "Study Staff",
+        institution: "NIAAA",
+        title: "Site Program Officer",
+        email: "gaozh@mail.nih.gov",
+        image: "../images/committees/placeholder.svg",
+        bio: "Site Program Officer"
+      },
+      {
+        name: "Liz Perruccio, M.S., PhD",
+        role: "DCC Program Officer",
+        group: "Study Staff",
+        institution: "NIAAA",
+        title: "DCC Program Officer",
+        email: "liz.perruccio@nih.gov",
+        image: "../images/committees/placeholder.svg",
+        bio: "DCC Program Officer"
+      },
+      // IU DCC
+      {
+        name: "Wanzhu Tu, PhD",
+        roles: {
+          "Study Staff": "PI (Contact), Biostatistician",
+          "Data Science Committee": "Co-Chair"
+        },
+        group: ["Study Staff", "Data Science Committee"],
+        institution: "Indiana University",
+        title: "PI (Contact), Biostatistician",
+        committees: "Co-chair, Data Science Committee",
+        email: "wtu1@iu.edu",
+        image: "../images/dcc/Wanzhu.jpg",
+        bio: "Biostatistician, Data-analytical Director, Co-chair DSC"
+      },
+      {
+        name: "Samer Gawrieh, MD",
+        roles: {
+          "Study Staff": "PI, Hepatologist",
+          "Clinical Sub-committee": "Co-Chair"
+        },
+        group: ["Study Staff", "Clinical Sub-committee"],
+        institution: "Indiana University",
+        title: "PI, Hepatologist",
+        committees: "Co-chair, Clinical Sub-committee",
+        email: "sgawrieh@iu.edu",
+        image: "../images/dcc/Samer.jpg",
+        bio: "Hepatologist, Clinical Director, Co-chair Clinical Sub-committee"
+      },
+      {
+        name: "Marwan Ghabril, MD",
+        role: "Safety Officer",
+        group: "Study Staff",
+        institution: "Indiana University",
+        title: "Safety Officer",
+        email: "mghabril@iu.edu",
+        image: "../images/admin/Marwan Ghabril.jpg",
+        bio: "Safety Officer"
+      },
+      {
+        name: "Savannah Yarnelle",
+        role: "Program Manager",
+        group: "Study Staff",
+        institution: "Indiana University",
+        title: "Program Manager",
+        email: "samussel@iu.edu",
+        image: "../images/dcc/Savannah.png",
+        bio: "Program Manager, Co-lead of ARDaC Core"
+      },
+      {
+        name: "Carla Kettler",
+        role: "Lead Data Manager",
+        group: "Study Staff",
+        institution: "Indiana University",
+        title: "Lead Data Manager",
+        email: "ckettler@iu.edu",
+        image: "../images/dcc/Carla.png",
+        bio: "Lead Data Manager"
+      },
+      {
+        name: "Ronny Ovando",
+        role: "Data Manager",
+        group: "Study Staff",
+        institution: "Indiana University",
+        title: "Data Manager",
+        email: "rmovando@iu.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "Data Manager"
+      },
+      {
+        name: "Timothy Hotchkiss",
+        role: "Data Manager",
+        group: "Study Staff",
+        institution: "Indiana University",
+        title: "Data Manager",
+        email: "thotchl@iu.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "Data Manager"
+      },
+      {
+        name: "Jo Davies",
+        role: "Monitor",
+        group: "Study Staff",
+        institution: "Indiana University",
+        title: "Monitor",
+        email: "jhdavies@iu.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "Monitor"
+      },
+      // IU Coordinators
+      {
+        name: "Yang Li, PhD",
+        roles: {
+          "Study Staff": "Statistician",
+          "Publication and Ancillary Study Committee": "Member"
+        },
+        group: ["Study Staff", "Publication and Ancillary Study Committee"],
+        institution: "Indiana University",
+        title: "Statistician",
+        committees: "Member, Publication and Ancillary Study Committee",
+        email: "yli18@iu.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "Statistician, PAC Member"
+      },
+      {
+        name: "Jing Su, PhD",
+        roles: {
+          "Study Staff": "Statistician",
+          "Data Science Committee": "Member"
+        },
+        group: ["Study Staff", "Data Science Committee"],
+        institution: "Indiana University",
+        title: "Statistician",
+        committees: "Member, Data Science Committee",
+        email: "su1@iu.edu",
+        image: "../images/dcc/Jing.png",
+        bio: "Bioinformatician, Co-lead of ARDaC Core"
+      },
+      // IU Coordinators
+      {
+        name: "Caitlin Snoeberger",
+        role: "Lead Coordinator",
+        group: "Coordinators",
+        institution: "Indiana University",
+        title: "Lead Coordinator",
+        email: "csnoeber@iu.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "Lead Coordinator"
+      },
+      // IU Pharmacist
+      {
+        name: "Melissa Allard",
+        role: "Lead Pharmacist",
+        group: "Pharmacists",
+        institution: "Indiana University",
+        title: "Pharmacist",
+        email: "mallard@iuhealth.org",
+        image: "../images/admin/Melissa Allard.jpg",
+        bio: "Lead IDS Pharmacist"
+      },
+      // Cleveland Clinic
+      {
+        name: "Srinivasan Dasarathy, MD",
+        roles: {
+          "Study Staff": "PI",
+          "Data Science Committee": "Member"
+        },
+        group: ["Study Staff", "Data Science Committee"],
+        institution: "Cleveland Clinic",
+        title: "PI",
+        committees: "Member, Data Science Committee",
+        email: "DASARAS@ccf.org",
+        image: "../images/dcc/Srinivasan.jpg",
+        bio: "PI, DSC Member"
+      },
+      {
+        name: "David Streem, MD",
+        roles: {
+          "Study Staff": "PI",
+          "Publication and Ancillary Study Committee": "Co-Chair",
+          "Clinical Sub-committee": "Member"
+        },
+        group: ["Study Staff", "Publication and Ancillary Study Committee", "Clinical Sub-committee"],
+        institution: "Cleveland Clinic",
+        title: "PI",
+        committees: "Co-chair, Publication and Ancillary Study Committee; Member, Clinical Sub-committee",
+        email: "Streemd@ccf.org",
+        image: "../images/dcc/David.jpg",
+        bio: "PI, Co-chair PAC, Clinical Sub-committee Member"
+      },
+      {
+        name: "Nicole Welch",
+        roles: {
+          "Study Staff": "Investigator",
+          "Data Science Committee": "Co-Chair",
+          "Clinical Sub-committee": "Member",
+          "Publication and Ancillary Study Committee": "Member"
+        },
+        group: ["Study Staff", "Data Science Committee", "Clinical Sub-committee", "Publication and Ancillary Study Committee"],
+        institution: "Cleveland Clinic",
+        title: "Investigator",
+        committees: "Co-chair, Data Science Committee; Member, Clinical Sub-committee & PAC",
+        email: "welchn@ccf.org",
+        image: "../images/committees/Nicole.jpg",
+        bio: "Investigator, Co-chair DSC, Clinical Sub-committee & PAC Member"
+      },
+      {
+        name: "Laura Nagy",
+        roles: {
+          "Study Staff": "Investigator",
+          "Publication and Ancillary Study Committee": "Member"
+        },
+        group: ["Study Staff", "Publication and Ancillary Study Committee"],
+        institution: "Cleveland Clinic",
+        title: "Investigator",
+        committees: "Member, Publication and Ancillary Study Committee",
+        email: "nagyl3@ccf.org",
+        image: "../images/committees/placeholder.svg",
+        bio: "Investigator, PAC Member"
+      },
+      // Cleveland Clinic Coordinators
+      {
+        name: "Rahul Yerrapothu",
+        role: "Lead Coordinator",
+        group: "Coordinators",
+        institution: "Cleveland Clinic",
+        title: "Lead Coordinator",
+        email: "yerrapr@ccf.org",
+        image: "../images/committees/placeholder.svg",
+        bio: "Lead Coordinator"
+      },
+      // Cleveland Clinic Pharmacists
+      {
+        name: "Rachael Yim",
+        role: "Pharmacist",
+        group: "Pharmacists",
+        institution: "Cleveland Clinic",
+        title: "Pharmacist",
+        email: "yimr@ccf.org",
+        image: "../images/committees/placeholder.svg",
+        bio: "Pharmacist"
+      },
+      {
+        name: "Cleveland Clinic IDS",
+        role: "Pharmacist",
+        group: "Pharmacists",
+        institution: "Cleveland Clinic",
+        title: "Pharmacy IDS",
+        email: "ids@ccf.org",
+        image: "../images/committees/placeholder.svg",
+        bio: "Cleveland Clinic IDS"
+      },
+      // Indiana University (Clinical Site)
+      {
+        name: "Raj Vuppalanchi, MD",
+        roles: {
+          "Study Staff": "PI",
+          "Clinical Sub-committee": "Member"
+        },
+        group: ["Study Staff", "Clinical Sub-committee"],
+        institution: "Indiana University",
+        title: "PI",
+        committees: "Member, Clinical Sub-committee",
+        email: "rvuppala@iu.edu",
+        image: "../images/dcc/Raj.jpg",
+        bio: "PI, Clinical Sub-committee Member"
+      },
+      {
+        name: "Olawale Ojo, MD",
+        roles: {
+          "Study Staff": "PI",
+          "Clinical Sub-committee": "Member"
+        },
+        group: ["Study Staff", "Clinical Sub-committee"],
+        institution: "Indiana University",
+        title: "PI",
+        committees: "Member, Clinical Sub-committee",
+        email: "olaojo@iu.edu",
+        image: "../images/dcc/Olawale.jpg",
+        bio: "PI, Clinical Sub-committee Member"
+      },
+      {
+        name: "Lauren Nephew, MD",
+        role: "Investigator",
+        group: "Study Staff",
+        institution: "Indiana University",
+        title: "Investigator",
+        email: "lnephew@iu.edu",
+        image: "../images/admin/Lauren Nephew.jpg",
+        bio: "Investigator"
+      },
+      {
+        name: "Naga Chalasani, MD",
+        role: "Investigator",
+        group: "Study Staff",
+        institution: "Indiana University",
+        title: "Investigator",
+        email: "nchalasa@iu.edu",
+        image: "../images/admin/Naga Chalasani .jpg",
+        bio: "Investigator"
+      },
+      {
+        name: "Suthat Liangpunsakul, MD",
+        roles: {
+          "Study Staff": "Investigator",
+          "Publication and Ancillary Study Committee": "Co-Chair"
+        },
+        group: ["Study Staff", "Publication and Ancillary Study Committee"],
+        institution: "Indiana University",
+        title: "Investigator",
+        committees: "Co-chair, Publication and Ancillary Study Committee",
+        email: "sliangpu@iu.edu",
+        image: "../images/admin/Liangpunsakul.jpg",
+        bio: "Investigator, Co-chair PAC"
+      },
+      // Mayo Clinic
+      {
+        name: "Vijay Shah, MD",
+        roles: {
+          "Study Staff": "PI",
+          "Steering Committee": "Chair"
+        },
+        group: ["Study Staff", "Steering Committee"],
+        institution: "Mayo Clinic",
+        title: "PI",
+        committees: "Chair, Steering Committee",
+        email: "Shah.Vijay@mayo.edu",
+        image: "../images/dcc/Vijay.jpg",
+        bio: "PI, Chair Steering Committee"
+      },
+      {
+        name: "Victor Karpyak, MD, PhD",
+        role: "PI",
+        group: "Study Staff",
+        institution: "Mayo Clinic",
+        title: "PI",
+        email: "karpyak.victor@mayo.edu",
+        image: "../images/dcc/Victor.jpg",
+        bio: "PI, Addiction Medicine & Genetics"
+      },
+      {
+        name: "Patrick Kamath, MD",
+        roles: {
+          "Study Staff": "Investigator",
+          "Publication and Ancillary Study Committee": "Member"
+        },
+        group: ["Study Staff", "Publication and Ancillary Study Committee"],
+        institution: "Mayo Clinic",
+        title: "Investigator",
+        committees: "Member, Publication and Ancillary Study Committee",
+        email: "kamath.patrick@mayo.edu",
+        image: "../images/admin/Dr Kamath.png",
+        bio: "Investigator, PAC Member"
+      },
+      {
+        name: "Douglas Simonetto, MD",
+        roles: {
+          "Study Staff": "Investigator",
+          "Data Science Committee": "Chair",
+          "Clinical Sub-committee": "Member"
+        },
+        group: ["Study Staff", "Data Science Committee", "Clinical Sub-committee"],
+        institution: "Mayo Clinic",
+        title: "Investigator",
+        committees: "Chair, Data Science Committee; Member, Clinical Sub-committee",
+        email: "Simonetto.Douglas@mayo.edu",
+        image: "../images/committees/Douglas.jpg",
+        bio: "Investigator, Chair DSC, Clinical Sub-committee Member"
+      },
+      {
+        name: "Terry Schneekloth, MD",
+        role: "Investigator",
+        group: "Study Staff",
+        institution: "Mayo Clinic",
+        title: "Investigator",
+        email: "schneekloth.terry@mayo.edu",
+        image: "../images/admin/Dr Schneekloth.png",
+        bio: "Investigator, Addiction Psychiatry"
+      },
+      // Mayo Clinic Coordinators
+      {
+        name: "Amy Olofson",
+        role: "Lead Coordinator",
+        group: "Coordinators",
+        institution: "Mayo Clinic",
+        title: "Lead Coordinator",
+        email: "olofson.amy@mayo.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "Lead Coordinator"
+      },
+      // Mayo Clinic Pharmacist
+      {
+        name: "Melissa Manley",
+        role: "Pharmacist",
+        group: "Pharmacists",
+        institution: "Mayo Clinic",
+        title: "Pharmacist",
+        email: "manley.melissa@mayo.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "Pharmacist"
+      },
+      // Virginia Commonwealth University
+      {
+        name: "Arun Sanyal, MD",
+        roles: {
+          "Study Staff": "PI",
+          "Data Science Committee": "Co-Chair"
+        },
+        group: ["Study Staff", "Data Science Committee"],
+        institution: "Virginia Commonwealth University",
+        title: "PI",
+        committees: "Co-chair, Data Science Committee",
+        email: "arun.sanyal@vcuhealth.org",
+        image: "../images/dcc/Arun.jpg",
+        bio: "PI, DSC Co-Chair"
+      },
+      {
+        name: "Gerry Moeller, MD",
+        role: "PI",
+        group: "Study Staff",
+        institution: "Virginia Commonwealth University",
+        title: "PI",
+        email: "frederick.moeller@vcuhealth.org",
+        image: "../images/dcc/F_Gerard.jpg",
+        bio: "PI, Substance Use Disorders"
+      },
+      {
+        name: "Juan Pablo Arab, MD",
+        roles: {
+          "Study Staff": "Investigator",
+          "Clinical Sub-committee": "Chair"
+        },
+        group: ["Study Staff", "Clinical Sub-committee"],
+        institution: "Virginia Commonwealth University",
+        title: "Investigator",
+        committees: "Chair, Clinical Sub-committee",
+        email: "JuanPablo.Arab@vcuhealth.org",
+        image: "../images/committees/Juan.png",
+        bio: "Investigator, Chair Clinical Sub-committee"
+      },
+      {
+        name: "Richard Sterling, MD",
+        roles: {
+          "Study Staff": "Investigator",
+          "Publication and Ancillary Study Committee": "Member"
+        },
+        group: ["Study Staff", "Publication and Ancillary Study Committee"],
+        institution: "Virginia Commonwealth University",
+        title: "Investigator",
+        committees: "Member, Publication and Ancillary Study Committee",
+        email: "richard.sterling@vcuhealth.org",
+        image: "../images/committees/placeholder.svg",
+        bio: "Investigator, PAC Member"
+      },
+      {
+        name: "Amon Asgharpour, MD",
+        roles: {
+          "Study Staff": "Investigator",
+          "Clinical Sub-committee": "Member"
+        },
+        group: ["Study Staff", "Clinical Sub-committee"],
+        institution: "Virginia Commonwealth University",
+        title: "Investigator",
+        committees: "Member, Clinical Sub-committee",
+        email: "amon.asgharpour@vcuhealth.org",
+        image: "../images/committees/placeholder.svg",
+        bio: "Investigator, Clinical Sub-committee Member"
+      },
+      // VCU Coordinators
+      {
+        name: "Sara O'Connor",
+        role: "Lead Coordinator",
+        group: "Coordinators",
+        institution: "Virginia Commonwealth University",
+        title: "Lead Coordinator",
+        email: "sara.oconnor@vcuhealth.org",
+        image: "../images/committees/placeholder.svg",
+        bio: "Lead Coordinator"
+      },
+      // VCU Pharmacist
+      {
+        name: "VCU IDS",
+        role: "Pharmacist",
+        group: "Pharmacists",
+        institution: "Virginia Commonwealth University",
+        title: "Rotating Pharmacists",
+        email: "Investigational.drug@vcuhealth.org",
+        image: "../images/committees/placeholder.svg",
+        bio: "VCU IDS"
+      },
+      // University of Louisville
+      {
+        name: "Ashwani Singal, MD",
+        roles: {
+          "Study Staff": "PI",
+          "Publication and Ancillary Study Committee": "Chair",
+          "Data Science Committee": "Member"
+        },
+        group: ["Study Staff", "Publication and Ancillary Study Committee", "Data Science Committee"],
+        institution: "University of Louisville",
+        title: "PI",
+        committees: "Chair, Publication and Ancillary Study Committee; Member, Data Science Committee",
+        email: "ashwani.singal@louisville.edu",
+        image: "../images/dcc/Ashwani.jpg",
+        bio: "PI, Chair PAC, DSC Member"
+      },
+      {
+        name: "Chris Stewart, MD",
+        role: "PI",
+        group: "Study Staff",
+        institution: "University of Louisville",
+        title: "PI",
+        email: "christopher.stewart@louisville.edu",
+        image: "../images/dcc/Chris.jpg",
+        bio: "PI, Addiction Psychiatry"
+      },
+      {
+        name: "Vatsalya Vatsalya, PhD",
+        roles: {
+          "Study Staff": "Investigator",
+          "Clinical Sub-committee": "Member"
+        },
+        group: ["Study Staff", "Clinical Sub-committee"],
+        institution: "University of Louisville",
+        title: "Investigator",
+        committees: "Member, Clinical Sub-committee",
+        email: "vatsalya.vatsalya@louisville.edu",
+        image: "../images/admin/Vatsalya Vatsalya.jpg",
+        bio: "Investigator, Clinical Sub-committee Member"
+      },
+      {
+        name: "Craig McClain, MD",
+        roles: {
+          "Study Staff": "Investigator",
+          "Data Science Committee": "Member"
+        },
+        group: ["Study Staff", "Data Science Committee"],
+        institution: "University of Louisville",
+        title: "Investigator",
+        committees: "Member, Data Science Committee",
+        email: "craig.mcclain@louisville.edu",
+        image: "../images/admin/Craig McClain.jpg",
+        bio: "Investigator, DSC Member"
+      },
+      // University of Louisville Coordinators
+      {
+        name: "Amber Jackson",
+        role: "Lead Coordinator",
+        group: "Coordinators",
+        institution: "University of Louisville",
+        title: "Lead Coordinator",
+        email: "amber.jackson.1@louisville.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "Lead Coordinator"
+      },
+      // University of Louisville Pharmacists
+      {
+        name: "Cathy Whalen",
+        role: "Pharmacist",
+        group: "Pharmacists",
+        institution: "University of Louisville",
+        title: "Pharmacist",
+        email: "cathy.whalen@uoflhealth.org",
+        image: "../images/committees/placeholder.svg",
+        bio: "Pharmacist"
+      },
+      {
+        name: "Amanda Sell",
+        role: "Pharmacist",
+        group: "Pharmacists",
+        institution: "University of Louisville",
+        title: "Pharmacist",
+        email: "amanda.sell@uoflhealth.org",
+        image: "../images/committees/placeholder.svg",
+        bio: "Pharmacist"
+      },
+      // UT Southwestern
+      {
+        name: "Mack Mitchell, MD",
+        roles: {
+          "Study Staff": "PI",
+          "Publication and Ancillary Study Committee": "Member"
+        },
+        group: ["Study Staff", "Publication and Ancillary Study Committee"],
+        institution: "UT Southwestern",
+        title: "PI",
+        committees: "Member, Publication and Ancillary Study Committee",
+        email: "Mack.Mitchell@utsouthwestern.edu",
+        image: "../images/dcc/Mack.jpg",
+        bio: "PI, PAC Member"
+      },
+      {
+        name: "Sherwood Brown, MD, PhD",
+        roles: {
+          "Study Staff": "PI",
+          "Clinical Sub-committee": "Co-Chair"
+        },
+        group: ["Study Staff", "Clinical Sub-committee"],
+        institution: "UT Southwestern",
+        title: "PI",
+        committees: "Co-chair, Clinical Sub-committee",
+        email: "Sherwood.Brown@utsouthwestern.edu",
+        image: "../images/dcc/Sherwood.jpg",
+        bio: "PI, Co-chair Clinical Sub-committee"
+      },
+      {
+        name: "Jaqueline O'Leary, MD",
+        roles: {
+          "Study Staff": "Investigator",
+          "Clinical Sub-committee": "Member"
+        },
+        group: ["Study Staff", "Clinical Sub-committee"],
+        institution: "UT Southwestern",
+        title: "Investigator",
+        committees: "Member, Clinical Sub-committee",
+        email: "Jacqueline.OLeary@UTSouthwestern.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "Investigator, Clinical Sub-committee Member"
+      },
+      // UT Southwestern Coordinators
+      {
+        name: "Leticia Rodriguez",
+        role: "Lead Coordinator",
+        group: "Coordinators",
+        institution: "UT Southwestern",
+        title: "Lead Coordinator",
+        email: "leticia.rodriguez@utsouthwestern.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "Lead Coordinator"
+      },
+      // UT Southwestern Pharmacists
+      {
+        name: "UTSW IDS",
+        role: "Pharmacist",
+        group: "Pharmacists",
+        institution: "UT Southwestern",
+        title: "Pharmacy IDS",
+        email: "IDSUTSWCUH@UTSouthwestern.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "UTSW IDS"
+      },
+      {
+        name: "Parkland IDS",
+        role: "Pharmacist",
+        group: "Pharmacists",
+        institution: "UT Southwestern",
+        title: "Pharmacy IDS",
+        email: "IDSPHHS@phhs.org",
+        image: "../images/committees/placeholder.svg",
+        bio: "Parkland IDS"
+      },
+      // DSMB Members
+      {
+        name: "Anna Mae Diehl, MD",
+        role: "Chair",
+        group: "DSMB Members",
+        institution: "DSMB",
+        title: "DSMB Chair",
+        additionalInfo: "Duke University",
+        email: "annamae.diehl@duke.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "DSMB Chair, Duke University"
+      },
+      {
+        name: "Valerie Durkalski-Mauldin, PhD",
+        role: "Statistician",
+        group: "DSMB Members",
+        institution: "DSMB",
+        title: "DSMB Statistician",
+        additionalInfo: "Medical University of South Carolina",
+        email: "durkalsv@musc.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "DSMB Statistician, Medical University of South Carolina"
+      },
+      {
+        name: "Stephanie O'Malley, PhD",
+        role: "Member",
+        group: "DSMB Members",
+        institution: "DSMB",
+        title: "DSMB Member",
+        additionalInfo: "Yale University",
+        email: "stephanie.omalley@yale.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "DSMB Member, Yale University"
+      },
+      {
+        name: "Gene Im, MD",
+        role: "Member",
+        group: "DSMB Members",
+        institution: "DSMB",
+        title: "DSMB Member",
+        additionalInfo: "Columbia University",
+        email: "gyi2101@cumc.columbia.edu",
+        image: "../images/committees/placeholder.svg",
+        bio: "DSMB Member, Columbia University"
+      }
+    ];
+
+    let filteredResearchers = [...researchers];
+
+    // Function to render researchers
+    function renderResearchers(researchersList) {
+      const container = document.getElementById('researchersList');
+      const count = document.getElementById('resultsCount');
+      const groupFilter = document.getElementById('groupFilter').value;
+
+      // Group name abbreviations for display
+      const groupNameMap = {
+        "Study Staff": "Study Staff",
+        "Coordinators": "Coordinators",
+        "Pharmacists": "Pharmacists",
+        "DSMB Members": "DSMB",
+        "Steering Committee": "Steering",
+        "Clinical Sub-committee": "Clinical Sub",
+        "Publication and Ancillary Study Committee": "PAC",
+        "Data Science Committee": "DSC"
+      };
+
+      container.innerHTML = '';
+      count.textContent = researchersList.length;
+
+      researchersList.forEach(researcher => {
+        const card = document.createElement('div');
+        card.className = 'researcher-card';
+
+        // Get groups (default to ["Study Staff"] if not specified)
+        const groups = researcher.group 
+          ? (Array.isArray(researcher.group) ? researcher.group : [researcher.group])
+          : ["Study Staff"];
+
+        // Generate group badges HTML with abbreviated names
+        const groupBadges = groups.map(g => {
+          const displayName = groupNameMap[g] || g;
+          return `<span class="researcher-group">${displayName}</span>`;
+        }).join('');
+
+        // Generate role badges HTML - show all roles
+        let roleBadges = '';
+        if (researcher.roles && typeof researcher.roles === 'object') {
+          // New structure: roles is an object, show all roles
+          roleBadges = Object.values(researcher.roles).map(r => 
+            `<span class="researcher-role">${r}</span>`
+          ).join('');
+        } else {
+          // Old structure: single role
+          roleBadges = `<span class="researcher-role">${researcher.role}</span>`;
+        }
+
+        const bioText = researcher.bio || `${researcher.title}${researcher.committees ? '. ' + researcher.committees : ''}`;
+
+        card.innerHTML = `
+          <img src="${researcher.image}" alt="${researcher.name}" class="researcher-avatar">
+          <div class="researcher-info">
+            <div class="researcher-header">
+              <div class="researcher-name-section">
+                <h4 class="researcher-name">${researcher.name}</h4>
+                <div>
+                  ${groupBadges}
+                  ${roleBadges}
+                </div>
+                <div class="researcher-institution">${researcher.institution}</div>
+                <a href="mailto:${researcher.email}" class="researcher-email">${researcher.email}</a>
+              </div>
+            </div>
+            <p class="researcher-bio">${bioText}</p>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // Function to apply filters
+    function applyFilters() {
+      const groupFilter = document.getElementById('groupFilter').value;
+      const roleFilter = document.getElementById('roleFilter').value;
+      const institutionFilter = document.getElementById('institutionFilter').value;
+
+      filteredResearchers = researchers.filter(researcher => {
+        // Handle group as array or string
+        const researcherGroups = researcher.group 
+          ? (Array.isArray(researcher.group) ? researcher.group : [researcher.group])
+          : ["Study Staff"];
+        const matchesGroup = !groupFilter || researcherGroups.includes(groupFilter);
+        
+        // Handle role matching for both old and new structure
+        let matchesRole = !roleFilter;
+        if (roleFilter) {
+          if (researcher.roles && typeof researcher.roles === 'object') {
+            // New structure: check if any role in the roles object matches
+            // Treat both "PI" and "MPI" as "PI"
+            matchesRole = Object.values(researcher.roles).some(r => {
+              if (roleFilter === "PI") {
+                return r === "PI" || r === "MPI";
+              }
+              return r === roleFilter;
+            });
+          } else {
+            // Old structure: check role and additionalRoles
+            // Treat both "PI" and "MPI" as "PI"
+            if (roleFilter === "PI") {
+              matchesRole = researcher.role === "PI" || researcher.role === "MPI";
+            } else {
+              matchesRole = researcher.role === roleFilter || 
+                (researcher.additionalRoles && researcher.additionalRoles.includes(roleFilter));
+            }
+          }
+        }
+        
+        const matchesInstitution = !institutionFilter || researcher.institution === institutionFilter;
+
+        return matchesGroup && matchesRole && matchesInstitution;
+      });
+
+      renderResearchers(filteredResearchers);
+    }
+
+    // Function to update role filter options based on selected group
+    function updateRoleOptions() {
+      const groupFilter = document.getElementById('groupFilter').value;
+      const roleFilterElement = document.getElementById('roleFilter');
+      
+      // Get all unique roles for the selected group
+      let availableRoles = new Set();
+      
+      if (!groupFilter) {
+        // If no group selected, show all roles
+        researchers.forEach(researcher => {
+          if (researcher.roles && typeof researcher.roles === 'object') {
+            Object.values(researcher.roles).forEach(role => availableRoles.add(role));
+          } else if (researcher.role) {
+            availableRoles.add(researcher.role);
+          }
+        });
+      } else {
+        // If group selected, only show roles for that group
+        researchers.forEach(researcher => {
+          const researcherGroups = researcher.group 
+            ? (Array.isArray(researcher.group) ? researcher.group : [researcher.group])
+            : ["Study Staff"];
+          
+          if (researcherGroups.includes(groupFilter)) {
+            if (researcher.roles && typeof researcher.roles === 'object' && researcher.roles[groupFilter]) {
+              availableRoles.add(researcher.roles[groupFilter]);
+            } else if (researcher.role) {
+              availableRoles.add(researcher.role);
+            }
+          }
+        });
+      }
+      
+      // Sort roles alphabetically
+      const sortedRoles = Array.from(availableRoles).sort();
+      
+      // Save current selection
+      const currentSelection = roleFilterElement.value;
+      
+      // Clear and rebuild options
+      roleFilterElement.innerHTML = '<option value="">All</option>';
+      sortedRoles.forEach(role => {
+        const option = document.createElement('option');
+        option.value = role;
+        option.textContent = role;
+        roleFilterElement.appendChild(option);
+      });
+      
+      // Restore selection if still available
+      if (currentSelection && sortedRoles.includes(currentSelection)) {
+        roleFilterElement.value = currentSelection;
+      }
+    }
+
+    // Function to clear filters
+    function clearFilters() {
+      document.getElementById('groupFilter').value = '';
+      document.getElementById('roleFilter').value = '';
+      document.getElementById('institutionFilter').value = '';
+      updateRoleOptions();
+      filteredResearchers = [...researchers];
+      renderResearchers(filteredResearchers);
+    }
+
+    // Initialize
+    $(function () {
+      $("#navbar-include").load("../navbar.html", function () {
+        $("#navbar-include a").each(function () {
+          var href = $(this).attr("href");
+          if (href && !href.startsWith("http") && !href.startsWith("#")) {
+            $(this).attr("href", "../" + href);
+          }
+        });
+
+        $("#navbar-include img").each(function () {
+          var src = $(this).attr("src");
+          if (src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function () {
+        console.log('Footer loaded');
+      });
+
+      // Add event listener for group filter changes
+      document.getElementById('groupFilter').addEventListener('change', function() {
+        updateRoleOptions();
+      });
+
+      // Initialize role options
+      updateRoleOptions();
+
+      // Initial render
+      renderResearchers(filteredResearchers);
+    });
+  </script>
+</body>
+
+</html>

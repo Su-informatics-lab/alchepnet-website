@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pis">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Principal Investigators - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+
+      <!-- PIs Section -->
+      <div class="staff-section">
+        <h3 class="section-title">Principal Investigators</h3>
+        <h4 class="section-subtitle">Cleveland Clinic</h4>
+        <div class="staff-card">
+          <img src="../images/dcc/Srinivasan.jpg" alt="Srinivasan Dasarathy" class="staff-photo">
+          <div class="staff-info">
+            <h4>Srinivasan Dasarathy, MD (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">DASARAS@ccf.org</a>
+          </div>
+        </div>
+        <div class="staff-card">
+          <img src="../images/dcc/David.jpg" alt="David Streem" class="staff-photo">
+          <div class="staff-info">
+            <h4>David Streem, MD (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">Streemd@ccf.org</a>
+          </div>
+        </div>
+
+        <h4 class="section-subtitle">Indiana University</h4>
+        <div class="staff-card">
+          <img src="../images/dcc/Raj.jpg" alt="Raj Vuppalanchi" class="staff-photo">
+          <div class="staff-info">
+            <h4>Raj Vuppalanchi, MD (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">rvuppala@iu.edu</a>
+          </div>
+        </div>
+        <div class="staff-card">
+          <img src="../images/dcc/Olawale.jpg" alt="Olawale Ojo" class="staff-photo">
+          <div class="staff-info">
+            <h4>Olawale Ojo, MD (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">olaojo@iu.edu</a>
+          </div>
+        </div>
+
+        <h4 class="section-subtitle">Mayo Clinic</h4>
+        <div class="staff-card">
+          <img src="../images/dcc/Vijay.jpg" alt="Vijay Shah" class="staff-photo">
+          <div class="staff-info">
+            <h4>Vijay Shah, MD (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">Shah.Vijay@mayo.edu</a>
+          </div>
+        </div>
+        <div class="staff-card">
+          <img src="../images/dcc/Victor.jpg" alt="Victor Karpyak" class="staff-photo">
+          <div class="staff-info">
+            <h4>Victor Karpyak, MD, PhD (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">karpyak.victor@mayo.edu</a>
+          </div>
+        </div>
+
+        <h4 class="section-subtitle">Virginia Commonwealth University</h4>
+        <div class="staff-card">
+          <img src="../images/dcc/Arun.jpg" alt="Arun Sanyal" class="staff-photo">
+          <div class="staff-info">
+            <h4>Arun Sanyal, MD (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">arun.sanyal@vcuhealth.org</a>
+          </div>
+        </div>
+        <div class="staff-card">
+          <img src="../images/dcc/F_Gerard.jpg" alt="F. Gerard Moeller" class="staff-photo">
+          <div class="staff-info">
+            <h4>F. Gerard Moeller, MD (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">frederick.moeller@vcuhealth.org</a>
+          </div>
+        </div>
+
+        <h4 class="section-subtitle">University of Louisville</h4>
+        <div class="staff-card">
+          <img src="../images/dcc/Ashwani.jpg" alt="Ashwani Singal" class="staff-photo">
+          <div class="staff-info">
+            <h4>Ashwani Singal, MD (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">ashwani.singal@louisville.edu</a>
+          </div>
+        </div>
+        <div class="staff-card">
+          <img src="../images/dcc/Chris.jpg" alt="Chris Stewart" class="staff-photo">
+          <div class="staff-info">
+            <h4>Chris Stewart, MD (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">christopher.stewart@louisville.edu</a>
+          </div>
+        </div>
+
+        <h4 class="section-subtitle">UTSW</h4>
+        <div class="staff-card">
+          <img src="../images/dcc/Mack.jpg" alt="Mack Mitchell" class="staff-photo">
+          <div class="staff-info">
+            <h4>Mack Mitchell, MD (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">Mack.Mitchell@utsouthwestern.edu</a>
+          </div>
+        </div>
+        <div class="staff-card">
+          <img src="../images/dcc/Sherwood.jpg" alt="Sherwood Brown" class="staff-photo">
+          <div class="staff-info">
+            <h4>Sherwood Brown, MD, PhD, (PI)</h4>
+            <div class="staff-pronouns">He/Him</div>
+            <a href="mailto:email@institution.edu" class="staff-email">Sherwood.Brown@utsouthwestern.edu</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            $(this).attr("href", "../" + href);
+          }
+        });
+
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>

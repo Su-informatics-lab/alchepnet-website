@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Committees - AlcHepNet">
+    <meta name="author" content="AlcHepNet">
+    <link rel="icon" href="favicon.ico">
+    <title>Committees - AlcHepNet</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light">
+        <a class="navbar-brand" href="index.html"><img src="AlcHepNet_Website/AlcHepNet_Logos/Logo_AlcHepNet_4_Edit_2.png" alt="AlcHepNet Logo"></a>
+
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle btn" id="collaboration" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Collaboration</a>
+            <ul class="dropdown-menu" aria-labelledby="collaboration">
+              <li><a class="dropdown-item" href="about.html">About</a></li>
+              <li><a class="dropdown-item" href="participating-institutions.html">Participating Institutions</a></li>
+              <li><a class="dropdown-item" href="pis.html">PIs</a></li>
+              <li><a class="dropdown-item" href="dcc.html">DCC</a></li>
+              <li><a class="dropdown-item" href="committees.html">Committees</a></li>
+              <li><a class="dropdown-item" href="directory.html">Directory</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle btn" id="data-access" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data Access</a>
+            <ul class="dropdown-menu" aria-labelledby="data-access">
+              <li><a class="dropdown-item" href="data-system.html">Data System</a></li>
+              <li><a class="dropdown-item" href="policy.html">Policy</a></li>
+              <li><a class="dropdown-item" href="data-requesting-process.html">Data and Sample Requesting Process</a></li>
+              <li><a class="dropdown-item" href="codebook.html">Code Book</a></li>
+              <li><a class="dropdown-item" href="query-system.html">Query System</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle btn" id="publishing" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Publishing</a>
+            <ul class="dropdown-menu" aria-labelledby="publishing">
+              <li><a class="dropdown-item" href="publication-subcommittee.html">Publication Subcommittee</a></li>
+              <li><a class="dropdown-item" href="submission-of-publication-proposal.html">Submission of Publication Proposal</a></li>
+              <li><a class="dropdown-item" href="publications.html">Publication List</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle btn" id="clinical-studies" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clinical Studies</a>
+            <ul class="dropdown-menu" aria-labelledby="clinical-studies">
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" id="itaald-trial" href="#">ITAALD Trial</a>
+                <ul class="dropdown-menu" aria-labelledby="itaald-trial">
+                  <li><a class="dropdown-item" href="itaald-eligibility.html">Eligibility</a></li>
+                  <li><a class="dropdown-item" href="itaald-executive-summary.html">Executive Summary</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" id="legacy-studies" href="#">Legacy Studies</a>
+                <ul class="dropdown-menu" aria-labelledby="legacy-studies">
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle" id="obs-study" href="#">Observational Study</a>
+                    <ul class="dropdown-menu" aria-labelledby="obs-study">
+                      <li><a class="dropdown-item" href="eligibility.html">Eligibility</a></li>
+                      <li><a class="dropdown-item" href="executive-summary.html">Executive Summary</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-divider"></li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle" id="int-trial" href="#">Interventional Trial</a>
+                    <ul class="dropdown-menu" aria-labelledby="int-trial">
+                      <li><a class="dropdown-item" href="interventional-eligibility.html">Eligibility</a></li>
+                      <li><a class="dropdown-item" href="interventional-executive-summary.html">Executive Summary</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle btn" id="data-commons" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data Commons</a>
+            <ul class="dropdown-menu" aria-labelledby="data-commons">
+              <li><a class="dropdown-item" href="ardac.html">ARDaC</a></li>
+              <li><a class="dropdown-item" href="design.html">Design</a></li>
+              <li><a class="dropdown-item" href="link.html">Link</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle btn" id="biorepository" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Biorepository</a>
+            <ul class="dropdown-menu" aria-labelledby="biorepository">
+              <li><a class="dropdown-item" href="team.html">Team</a></li>
+              <li><a class="dropdown-item" href="iugb.html">IUGB</a></li>
+              <li><a class="dropdown-item" href="samples-collected.html">Samples Collected</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle btn" id="news-training" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News and Training Opportunities</a>
+            <ul class="dropdown-menu" aria-labelledby="news-training">
+              <li><a class="dropdown-item" href="new-publications.html">New Publications</a></li>
+              <li><a class="dropdown-item" href="training-tlfb.html">Training TLFB</a></li>
+            </ul>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          <small><a class="nav-link" href="https://redcap.uits.iu.edu/">IU REDCap</a></small><br>
+        </span>
+      </nav>
+    </header>
+
+    <main role="main">
+      <div class="container marketing">
+        <div class="row featurette">
+          <div class="col">
+            <h2 class="featurette-heading">Committees</h2>
+            <p class="lead">This page is under construction. Content will be added soon.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="container">
+      <div class="row">
+        <div class="col text-left">
+          <p>&copy; 2017-2025 Alcohol-associated Hepatitis Network</p>
+        </div>
+        <div class="col text-right">
+          <p class="float-right"><a href="#">Back to top</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="jquery-3.3.1.slim.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

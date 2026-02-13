@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Data Access - About">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Data Access - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <div class="container">
+        <div class="row featurette">
+          <div class="col">
+            <h1 class="section-title">Data Access</h1>
+          </div>
+        </div>
+
+        <div class="content-section" style="margin-top: 2rem;">
+          <p class="lead">
+            AlcHepNet is committed to responsible data sharing to advance research in alcohol-associated hepatitis. Study data from completed trials and observational studies are available to qualified investigators, while data from ongoing projects will be released after publication of primary results. Policies guiding data and biospecimen use can be found in the <strong><a href="policy.html">Access Policy</a></strong> section. Clinical data are maintained in the <strong>Alcohol Research Data Commons (ARDaC)</strong>, and investigators may submit requests through the <strong>Data and Sample Request Form</strong>. Upon review and approval by the Publication and Ancillary Study Subcommittee, the DCC will release the data. <a href="codebook.html"><strong>Code books</strong></a> for completed studies are provided to support data interpretation and secondary analyses.
+          </p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="content-section">
+          <h3>Data and Biospecimen Access Policy</h3>
+          <p>
+            AlcHepNet supports responsible and equitable sharing of clinical data and biospecimens to advance research in alcohol-associated hepatitis. Requests are reviewed for scientific merit, feasibility, protection of participant confidentiality, and compliance with regulatory and IRB requirements. Priority access is given to AlcHepNet investigators, with opportunities for external researchers, particularly through collaboration with network members. Approved projects require data-use or material-transfer agreements, and users must return derived data and acknowledge AlcHepNet contributions in resulting publications.
+          </p>
+          <p>
+            <a href="policy.html" class="btn btn-primary">View Page</a>
+            <a href="doc/general priciples for AHN data and sample sharing 12-01-2012.docx" class="btn btn-outline-primary" target="_blank">Download Policy Document (DOCX)</a>
+          </p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="content-section">
+          <h3>Codebooks</h3>
+          <p>
+            Codebooks for completed AlcHepNet studies are provided to help investigators understand variable definitions, data formats, and study-specific measures. These documents serve as a reference for secondary analyses and support accurate interpretation of shared datasets.
+          </p>
+          <p>
+            <a href="codebook.html" class="btn btn-primary">View Page</a>
+            <a href="doc/AlcHepNet Codebook_10Apr2024.pdf" class="btn btn-outline-primary" target="_blank">Download AlcHepNet Codebook (PDF)</a>
+          </p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="content-section">
+          <h3>Research Proposal Forms</h3>
+          <p>
+            Investigators interested in accessing AlcHepNet clinical data or biospecimens may submit a formal request using the <strong>Research Proposal Form</strong>. Proposals should outline research aims, analytic plans, and requested materials. All requests are reviewed by the AlcHepNet Publication and Ancillary Study Committee, and approved projects will proceed under the appropriate Data Use or Material Transfer Agreements before release of data or samples.
+          </p>
+          <p>
+            <a href="data-requesting-process.html" class="btn btn-primary">View Page</a>
+            <a href="doc/Template - AlcHepNet Ancillary Study Proposal.docx" class="btn btn-outline-primary" target="_blank">Download Proposal Template (DOCX)</a>
+            <a href="mailto:samussel@iu.edu?subject=AlcHepNet%20Research%20Proposal%20Submission&body=Dear%20Savannah,%0D%0A%0D%0AI%20am%20submitting%20a%20research%20proposal%20for%20AlcHepNet%20data/biospecimen%20access.%0D%0A%0D%0APlease%20find%20my%20proposal%20attached.%0D%0A%0D%0AThank%20you,%0D%0A" class="btn btn-outline-primary">
+              <i class="fas fa-envelope"></i> Submit Form to Savannah
+            </a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            $(this).attr("href", "../" + href);
+          }
+        });
+
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>

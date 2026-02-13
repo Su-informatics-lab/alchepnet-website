@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Design">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Design - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <div class="container">
+        <h3 class="section-title">Design of ARDaC</h3>
+        
+        <div style="text-align: center; margin: 2rem 0;">
+          <img src="../images/ardac/architecture.png" alt="ARDaC Architecture" class="img-fluid" style="max-width: 100%; height: auto;">
+        </div>
+        
+        <div class="row featurette">
+          <div class="col lead">
+            <p>The architecture of the ARDaC system is composed of the following components:</p>
+            
+            <h4>1. The ARDaC Data Warehouse</h4>
+            <p>
+              The heterogeneous clinical data, biosample information, and omics data information will be extracted from the IU DCC and UMass DCC, standardized according to the ARDaC Data Standard, harmonized according to the ARDaC Common Data Model, and hosted in a central ARDaC Data Warehouse. Specifically, the novel ARDaC Common Data Model is derived from and compatible with the Genomics Data Common (GDC) Data Model and is compliant with the FAIR Principles so that AlcHepNet multimodal data will be findable, accessible, interoperable, and reusable. The ARDaC Data Warehouse is the data source for the ARDaC web application, which is open to the public, as well as for regular reporting and customized services within the AlcHepNet consortium. A graph-based provenance model is used for comprehensive data dependency and version control. The ARDaC digital entities, including the standards, data model, data, metadata, scripts, and codes, are attributable, trackable, and reproducible.
+            </p>
+            
+            <h4>2. The ARDaC web application</h4>
+            <p>
+              The ARDaC system uses the Gen3 data common framework, which is widely used in NIH-sponsored projects. At the data layer, the standardized and harmonized data is extracted from the ARDaC Data Warehouse and injected into the ARDaC Staging Data Warehouse according to the ARDaC Graph Data Model. In the middleware layer, based on the user's input of the filtering criteria, the graph-based data is queried using GraphQL through the elastic search engine, analyzed with Python, and delivered interactively to users using the JavaScript-based react and Storybook libraries. The ARDaC web application is containerized as a series of images, each providing a specific service. The ARDaC system can be deployed to the AWS cloud services through the Kubernetes platform or to a dedicated server through the Docker platform. By leveraging the GDC common data model and the Gen3 data commons ecosystem, ARDaC enables data integration with other NIH-funded data commons, delivering a broad impact of AlcHepNet research and data to other research communities.
+            </p>
+            
+            <p>
+              <strong>For more information, visit <a href="https://ardac.org/" target="_blank">https://ardac.org/</a></strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            if(href.startsWith("Data_Access/")) {
+              $(this).attr("href", href.replace("Data_Access/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>

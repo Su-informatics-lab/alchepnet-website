@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Team">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Team - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+
+      <!-- AHN Biobank Team Section -->
+      <div class="staff-section">
+        <h3 class="section-title">AHN Biobank Team</h3>
+        <p class="lead" style="margin-bottom: 2rem; color: #666;">
+          The core team managing biospecimen collection, processing, and distribution for the AlcHepNet research network.
+        </p>
+
+        <div class="staff-card">
+          <img src="../images/dcc/Tae-Hwi.png" alt="Tae-Hwi Linus Schwantes-An" class="staff-photo">
+          <div class="staff-info">
+            <h4>Tae-Hwi Linus Schwantes-An, PhD</h4>
+            <div class="staff-title">Assistant Professor of Medical & Molecular Genetics at IUSM, Director of Genetics at Indiana Biobank</div>
+            <a href="mailto:tlschwan@iu.edu" class="staff-email">tlschwan@iu.edu</a>
+          </div>
+        </div>
+
+        <div class="staff-card">
+          <img src="../images/biorepo/Whitney-Jaunzemis.jpg" alt="Whitney Jaunzemis" class="staff-photo">
+          <div class="staff-info">
+            <h4>Whitney Jaunzemis, BS, CCRP</h4>
+            <div class="staff-title">Project Manager</div>
+            <a href="mailto:wjaunzem@iu.edu" class="staff-email">wjaunzem@iu.edu</a>
+          </div>
+        </div>
+
+        <div class="staff-card">
+          <img src="../images/biorepo/Jacob-Lee.jpg" alt="Jacob Lee" class="staff-photo">
+          <div class="staff-info">
+            <h4>Jacob Lee, BS</h4>
+            <div class="staff-title">Clinical Research Coordinator</div>
+          </div>
+        </div>
+
+        <div class="staff-card">
+          <img src="../images/biorepo/Becky-Long.jpg" alt="Becky Long" class="staff-photo">
+          <div class="staff-info">
+            <h4>Becky Long, BS</h4>
+            <div class="staff-title">Clinical Research Coordinator</div>
+          </div>
+        </div>
+
+        <div class="staff-card">
+          <img src="../images/biorepo/Michael-Aikin.jpg" alt="Michael Aikin" class="staff-photo">
+          <div class="staff-info">
+            <h4>Michael Aikin, BS</h4>
+            <div class="staff-title">Clinical Research Specialist</div>
+          </div>
+        </div>
+
+        <div class="staff-card">
+          <img src="../images/biorepo/Erin-Koehler.jpg" alt="Erin Koehler" class="staff-photo">
+          <div class="staff-info">
+            <h4>Erin Koehler, R.T.(R)M</h4>
+            <div class="staff-title">Clinical Research Specialist</div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function () {
+      $("#navbar-include").load("../navbar.html", function () {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            $(this).attr("href", "../" + href);
+          }
+        });
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function () {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Clinical Centers">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Clinical Centers - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* Interactive Map Styles */
+    .map-container {
+      position: relative;
+      max-width: 100%;
+      margin: 0 auto 2rem auto;
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .map-title {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+    
+    .us-map-wrapper {
+      position: relative;
+      width: 100%;
+    }
+    
+    .us-map-wrapper svg {
+      width: 100%;
+      height: auto;
+    }
+    
+    /* State styles */
+    .us-map-wrapper svg path {
+      fill: #e8e8e8 !important;
+      stroke: #fff !important;
+      stroke-width: 1 !important;
+      transition: all 0.3s ease;
+    }
+    
+    /* Highlighted states with centers */
+    .us-map-wrapper svg path.has-center {
+      fill: #80abc1 !important;
+      cursor: pointer;
+    }
+    
+    .us-map-wrapper svg path.has-center:hover {
+      fill: #80abc1 !important;
+      filter: drop-shadow(0 0 8px rgba(74, 124, 181, 0.6));
+    }
+    
+    /* Star marker styles */
+    #clinical-markers {
+      /* Markers positioned to match state centers */
+      transform: translateX(50px);
+    }
+    
+    .map-marker {
+      cursor: pointer !important;
+      pointer-events: all !important;
+    }
+    
+    .map-marker circle:not([fill="transparent"]) {
+      fill: #c41230;
+      stroke: #fff;
+      stroke-width: 2;
+      pointer-events: all !important;
+      transition: all 0.2s ease;
+      filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
+    }
+    
+    .map-marker circle[fill="transparent"] {
+      fill: transparent;
+      stroke: none;
+      pointer-events: all !important;
+    }
+    
+    .map-marker:hover circle:not([fill="transparent"]) {
+      fill: #e01030;
+      stroke: #fff;
+      stroke-width: 3;
+      filter: drop-shadow(0 0 5px rgba(196, 18, 48, 0.6));
+    }
+    
+    /* Tooltip styles */
+    .map-tooltip {
+      position: absolute;
+      background: #333;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: 100;
+      transform: translate(-50%, -100%);
+      margin-top: -10px;
+    }
+    
+    .map-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: #333;
+    }
+    
+    .map-tooltip.show {
+      opacity: 1;
+    }
+    
+    /* Map legend */
+    .map-legend {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    .legend-marker {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: #c41230;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    }
+    
+    /* Highlight effect for cards when scrolled to */
+    .clinic-card.highlight {
+      animation: highlightPulse 1.5s ease;
+      box-shadow: 0 0 20px rgba(196, 18, 48, 0.5);
+    }
+    
+    @keyframes highlightPulse {
+      0% { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+      50% { box-shadow: 0 0 30px rgba(196, 18, 48, 0.6); }
+      100% { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    }
+    
+    /* Organizations section - match homepage layout */
+    .section-title.organizations-title {
+      padding-bottom: 0;
+      border-bottom: none;
+      font-weight: 600;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <div class="container site-contacts">
+        <div class="row featurette">
+          <div class="col">
+            <h1 class="section-title">Clinical Centers</h1>
+          </div>
+        </div>
+
+        <!-- Interactive US Map -->
+        <div class="map-container">
+          <div class="map-title">Click on a star to view Clinical Center details</div>
+          <div class="us-map-wrapper" id="usMapWrapper">
+            <!-- Loading professional US map from utilities folder -->
+          </div>
+          <div class="map-legend">
+            <span class="legend-marker"></span>
+            <span>AlcHepNet Clinical Center</span>
+          </div>
+        </div>
+
+        <!-- Indiana University DCC -->
+        <div class="clinic-card" id="cc-iu-dcc">
+          <h4 class="section-subtitle">Indiana University DCC</h4>
+          <div class="clinic-info">
+            <div class="clinic-website">
+              <div class="clinic-label">Website</div>
+              <p class="lead"><a href="https://fsph.iupui.edu/research-centers/research/biostatistics.html">https://fsph.iupui.edu/research-centers/research/biostatistics.html</a></p>
+            </div>
+            <div class="clinic-address">
+              <div class="clinic-label">Address</div>
+              <address>
+                Indiana University School of Medicine<br>
+                340 West 10th Street<br>
+                Fairbanks Hall, Suite 6200<br>
+                Indianapolis, IN 46202-3082
+              </address>
+            </div>
+          </div>
+          <div class="staff-grid">
+            <div class="staff-card">
+              <img src="../images/dcc/Carla.png" alt="Carla Kettler" class="staff-photo">
+              <div class="staff-info">
+                <h4>Carla Kettler</h4>
+                <div class="staff-title">Data Management</div>
+                <a href="mailto:ckettler@iu.edu" class="staff-email">ckettler@iu.edu</a>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/dcc/Wanzhu.jpg" alt="Wanzhu Tu" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Wanzhu Tu</h4>
+                <div class="staff-title">Biostatistics</div>
+                <a href="mailto:wtu1@iu.edu" class="staff-email">wtu1@iu.edu</a>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/dcc/Samer.jpg" alt="Samer Gawrieh" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Samer Gawrieh</h4>
+                <div class="staff-title">Hepatology</div>
+                <a href="mailto:sgawrieh@iu.edu" class="staff-email">sgawrieh@iu.edu</a>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/dcc/Jing.png" alt="Jing Su" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Jing Su</h4>
+                <div class="staff-title">Bioinformatics</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Melissa Allard.jpg" alt="Melissa Allard" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Melissa Allard</h4>
+                <div class="staff-title">Pharmacy</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/dcc/Savannah.png" alt="Savannah Yarnelle" class="staff-photo">
+              <div class="staff-info">
+                <h4>Savannah Yarnelle</h4>
+                <div class="staff-title">Project Management</div>
+                <a href="mailto:samussel@iu.edu" class="staff-email">samussel@iu.edu</a>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Marwan Ghabril.jpg" alt="Marwan Ghabril" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Marwan Ghabril</h4>
+                <div class="staff-title">Hepatology</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Yang Li.jpg" alt="Yang Li" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Yang Li</h4>
+                <div class="staff-title">Biostatistics</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Schwantes-An.jpg" alt="Schwantes-An" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Schwantes-An</h4>
+                <div class="staff-title">Biorepository</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cleveland Clinic -->
+        <div class="clinic-card" id="cc-cleveland">
+          <h4 class="section-subtitle">Cleveland Clinic</h4>
+          <div class="clinic-info">
+            <div class="clinic-website">
+              <div class="clinic-label">Website</div>
+              <p class="lead"><a href="https://my.clevelandclinic.org/departments/digestive/research-innovations">https://my.clevelandclinic.org/departments/digestive/research-innovations</a></p>
+            </div>
+            <div class="clinic-address">
+              <div class="clinic-label">Address</div>
+              <address>
+                Cleveland Clinic<br>
+                Department of Gastroenterology and Hepatology<br>
+                Mail Code A31, 9500 Euclid Avenue<br>
+                Cleveland, OH 44195
+              </address>
+            </div>
+          </div>
+          <div class="staff-grid">
+            <div class="staff-card">
+              <img src="../images/dcc/Srinivasan.jpg" alt="Srinivasan Dasarathy" class="staff-photo">
+              <div class="staff-info">
+                <h4>Srinivasan Dasarathy, MD</h4>
+                <div class="staff-title">PI</div>
+                <a href="mailto:DASARAS@ccf.org" class="staff-email">DASARAS@ccf.org</a>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/dcc/David.jpg" alt="David Streem" class="staff-photo">
+              <div class="staff-info">
+                <h4>David Streem, MD</h4>
+                <div class="staff-title">PI</div>
+                <a href="mailto:Streemd@ccf.org" class="staff-email">Streemd@ccf.org</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Indiana University Clinical Center -->
+        <div class="clinic-card" id="cc-iu-clinical">
+          <h4 class="section-subtitle">Indiana University Clinical Center</h4>
+          <div class="clinic-info">
+            <div class="clinic-website">
+              <div class="clinic-label">Website</div>
+              <p class="lead">
+                <a href="https://medicine.iu.edu/research/clinical/trials/">https://medicine.iu.edu/research/clinical/trials/</a><br>
+                <a href="https://research.indianactsi.org/">https://research.indianactsi.org/</a>
+              </p>
+            </div>
+            <div class="clinic-address">
+              <div class="clinic-label">Address</div>
+              <address>
+                Gastroenterology<br>
+                Rotary Building, Suite 225<br>
+                702 Rotary Cir<br>
+                Indianapolis, IN 46202-5175
+              </address>
+            </div>
+          </div>
+          <div class="staff-grid">
+            <div class="staff-card">
+              <img src="../images/admin/Lauren Nephew.jpg" alt="Lauren Nephew" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Lauren Nephew</h4>
+                <div class="staff-title">Hepatology</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Liangpunsakul.jpg" alt="Liangpunsakul" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Liangpunsakul</h4>
+                <div class="staff-title">Hepatology</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Naga Chalasani .jpg" alt="Naga Chalasani" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Naga Chalasani</h4>
+                <div class="staff-title">Hepatology</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/dcc/Olawale.jpg" alt="Olawale O. Ojo" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Olawale O. Ojo</h4>
+                <div class="staff-title">Psychiatry</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/dcc/Raj.jpg" alt="Raj Vuppalanchi" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr. Raj Vuppalanchi</h4>
+                <div class="staff-title">Hepatology</div>
+                <a href="mailto:rvuppala@iu.edu" class="staff-email">rvuppala@iu.edu</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Mayo Clinic Clinical Center -->
+        <div class="clinic-card" id="cc-mayo">
+          <h4 class="section-subtitle">Mayo Clinic Clinical Center</h4>
+          <div class="clinic-info">
+            <div class="clinic-website">
+              <div class="clinic-label">Website</div>
+              <p class="lead"><a href="https://www.mayo.edu/research/clinical-trials/search-results?keyword=alcoholic%20hepatitis&status=open-unknown">Mayo Clinic Clinical Trials</a></p>
+            </div>
+            <div class="clinic-address">
+              <div class="clinic-label">Address</div>
+              <address>
+                200 First St. SW<br>
+                Rochester, MN 55905
+              </address>
+            </div>
+          </div>
+          <div class="staff-grid">
+            <div class="staff-card">
+              <img src="../images/admin/Dr Shah.png" alt="Dr Shah" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr Shah</h4>
+                <div class="staff-title">Hepatology, Principal Investigator</div>
+                <a href="mailto:Shah.Vijay@mayo.edu" class="staff-email">Shah.Vijay@mayo.edu</a>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Dr Karpyak.png" alt="Dr Karpyak" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr Karpyak</h4>
+                <div class="staff-title">Psychiatry, Principal Investigator</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Dr Kamath.png" alt="Dr Kamath" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr Kamath</h4>
+                <div class="staff-title">Hepatology, Co-Investigator</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Dr Simonetto.png" alt="Dr Simonetto" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr Simonetto</h4>
+                <div class="staff-title">Hepatology, Co-Investigator</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Dr Schneekloth.png" alt="Dr Schneekloth" class="staff-photo">
+              <div class="staff-info">
+                <h4>Dr Schneekloth</h4>
+                <div class="staff-title">Psychiatry, Co-Investigator</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Virginia Commonwealth University -->
+        <div class="clinic-card" id="cc-vcu">
+          <h4 class="section-subtitle">Virginia Commonwealth University</h4>
+          <div class="clinic-info">
+            <div class="clinic-website">
+              <div class="clinic-label">Website</div>
+              <p class="lead"><a href="https://studyfinder.cctr.vcu.edu/">https://studyfinder.cctr.vcu.edu/</a></p>
+            </div>
+            <div class="clinic-address">
+              <div class="clinic-label">Address</div>
+              <address>
+                VCU School of Medicine<br>
+                McGlothlin Medical Education Center (MMEC)<br>
+                1201 E Marshall St., 4th Floor, Suite 4-100<br>
+                Richmond, VA 23298
+              </address>
+            </div>
+          </div>
+          <div class="staff-grid">
+            <div class="staff-card">
+              <img src="../images/dcc/Arun.jpg" alt="Arun Sanyal" class="staff-photo">
+              <div class="staff-info">
+                <h4>Arun Sanyal, MD</h4>
+                <div class="staff-title">PI</div>
+                <a href="mailto:arun.sanyal@vcuhealth.org" class="staff-email">arun.sanyal@vcuhealth.org</a>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/dcc/F_Gerard.jpg" alt="F. Gerard Moeller" class="staff-photo">
+              <div class="staff-info">
+                <h4>F. Gerard Moeller, MD</h4>
+                <div class="staff-title">PI</div>
+                <a href="mailto:frederick.moeller@vcuhealth.org" class="staff-email">frederick.moeller@vcuhealth.org</a>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/committees/Juan.png" alt="Juan Pablo Arab" class="staff-photo">
+              <div class="staff-info">
+                <h4>Juan Pablo Arab, MD</h4>
+                <div class="staff-title">Investigator</div>
+                <a href="mailto:JuanPablo.Arab@vcuhealth.org" class="staff-email">JuanPablo.Arab@vcuhealth.org</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- University of Louisville (UofL) Clinical Center -->
+        <div class="clinic-card" id="cc-louisville">
+          <h4 class="section-subtitle">University of Louisville (UofL) Clinical Center</h4>
+          <div class="clinic-info">
+            <div class="clinic-website">
+              <div class="clinic-label">Website</div>
+              <p class="lead"><a href="http://louisville.edu/research/ctu">http://louisville.edu/research/ctu</a></p>
+            </div>
+            <div class="clinic-address">
+              <div class="clinic-label">Address</div>
+              <address>
+                University of Louisville School of Medicine<br>
+                550 S. Jackson Street (ACB, Room A3L15)<br>
+                Louisville, Kentucky 40202
+              </address>
+            </div>
+          </div>
+          <div class="staff-grid">
+            <div class="staff-card">
+              <img src="../images/admin/Craig McClain.jpg" alt="Craig McClain" class="staff-photo">
+              <div class="staff-info">
+                <h4>Craig McClain, MD</h4>
+                <div class="staff-title">Professor</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Chris Stewart.jpg" alt="Chris Stewart" class="staff-photo">
+              <div class="staff-info">
+                <h4>Chris Stewart, MD</h4>
+                <div class="staff-title">Associate Professor</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Ashwani Singal.png" alt="Ashwani Singal" class="staff-photo">
+              <div class="staff-info">
+                <h4>Ashwani Singal, MD</h4>
+                <div class="staff-title">Professor</div>
+                <a href="mailto:ashwani.singal@louisville.edu" class="staff-email">ashwani.singal@louisville.edu</a>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Luis Marsano.jpg" alt="Luis Marsano" class="staff-photo">
+              <div class="staff-info">
+                <h4>Luis Marsano, MD</h4>
+                <div class="staff-title">Professor</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Loretta Jophlin.jpg" alt="Loretta Jophlin" class="staff-photo">
+              <div class="staff-info">
+                <h4>Loretta Jophlin, MD</h4>
+                <div class="staff-title">Assistant Professor</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Lorenzo Leggio.jpg" alt="Lorenzo Leggio" class="staff-photo">
+              <div class="staff-info">
+                <h4>Lorenzo Leggio, M.D., Ph.D.</h4>
+                <div class="staff-title">NIAAA Senior Investigator Consultant</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Vatsalya Vatsalya.jpg" alt="Vatsalya Vatsalya" class="staff-photo">
+              <div class="staff-info">
+                <h4>Vatsalya Vatsalya, MD</h4>
+                <div class="staff-title">Assistant Professor</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Andrea Reyes Vega.jpg" alt="Andrea Reyes Vega" class="staff-photo">
+              <div class="staff-info">
+                <h4>Andrea Reyes Vega, MD</h4>
+                <div class="staff-title">Assistant Professor</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Josiah Hardesty.jpg" alt="Josiah Hardesty" class="staff-photo">
+              <div class="staff-info">
+                <h4>Josiah Hardesty, PhD</h4>
+                <div class="staff-title">Assistant Professor</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Leila Gobejishvili.jpg" alt="Leila Gobejishvili" class="staff-photo">
+              <div class="staff-info">
+                <h4>Leila Gobejishvili, PhD</h4>
+                <div class="staff-title">Associate Professor</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Wenke Feng.png" alt="Wenke Feng" class="staff-photo">
+              <div class="staff-info">
+                <h4>Wenke Feng, PhD</h4>
+                <div class="staff-title">Professor, Consultant, Tulane</div>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/admin/Gyongyi Szabo.jpg" alt="Gyongyi Szabo" class="staff-photo">
+              <div class="staff-info">
+                <h4>Gyongyi Szabo, MD, PhD</h4>
+                <div class="staff-title">Chief Academic Officer Consultant, Harvard</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- University of UTSW -->
+        <div class="clinic-card" id="cc-utsw">
+          <h4 class="section-subtitle">University of UTSW</h4>
+          <div class="clinic-info">
+            <div class="clinic-website">
+              <div class="clinic-label">Website</div>
+              <p class="lead"><a href="https://clinicaltrials.utswmed.org/studies?utf8=%E2%9C%93&search%5Bhealthy_volunteers%5D=&search%5Bgender%5D=&search%5Bq%5D=alcoholic+hepatitis&commit=Search">UTSW Clinical Trials</a></p>
+            </div>
+            <div class="clinic-address">
+              <div class="clinic-label">Address</div>
+              <address>
+                Digestive Disease Clinic at Outpatient Building<br>
+                1801 Inwood Road, 6th Floor, Suite 102<br>
+                Dallas, TX 75390-8887
+              </address>
+            </div>
+          </div>
+          <div class="staff-grid">
+            <div class="staff-card">
+              <img src="../images/dcc/Mack.jpg" alt="Mack Mitchell" class="staff-photo">
+              <div class="staff-info">
+                <h4>Mack Mitchell, MD</h4>
+                <div class="staff-title">PI</div>
+                <a href="mailto:mack.mitchell@utsouthwestern.edu" class="staff-email">mack.mitchell@utsouthwestern.edu</a>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/dcc/Sherwood.jpg" alt="Sherwood Brown" class="staff-photo">
+              <div class="staff-info">
+                <h4>Sherwood Brown, MD, PhD</h4>
+                <div class="staff-title">PI</div>
+                <a href="mailto:Sherwood.Brown@utsouthwestern.edu" class="staff-email">Sherwood.Brown@utsouthwestern.edu</a>
+              </div>
+            </div>
+            <div class="staff-card">
+              <img src="../images/committees/placeholder.svg" alt="Jacqueline O'Leary" class="staff-photo">
+              <div class="staff-info">
+                <h4>Jacqueline O'Leary, MD</h4>
+                <div class="staff-title">Investigator</div>
+                <a href="mailto:Jacqueline.OLeary@UTSouthwestern.edu" class="staff-email">Jacqueline.OLeary@UTSouthwestern.edu</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col">
+            <h2 class="section-title organizations-title">AlcHepNet Organizations</h2>
+            <div class="organizations-grid">
+              <div class="org-item">
+                <a href="https://my.clevelandclinic.org/" target="_blank" rel="noopener noreferrer">
+                  <img src="../images/orgs/CC.png" alt="Cleveland Clinic">
+                </a>
+              </div>
+              <div class="org-item">
+                <a href="https://louisville.edu/" target="_blank" rel="noopener noreferrer">
+                  <img src="../images/orgs/UL.png" alt="University of Louisville">
+                </a>
+              </div>
+              <div class="org-item">
+                <a href="https://www.mayoclinic.org/" target="_blank" rel="noopener noreferrer">
+                  <img src="../images/orgs/mayo.png" alt="Mayo Clinic">
+                </a>
+              </div>
+              <div class="org-item">
+                <a href="https://www.vcu.edu/" target="_blank" rel="noopener noreferrer">
+                  <img src="../images/orgs/VCU.png" alt="Virginia Commonwealth University">
+                </a>
+              </div>
+              <div class="org-item">
+                <a href="https://www.iu.edu/" target="_blank" rel="noopener noreferrer">
+                  <img src="../images/orgs/IU.png" alt="Indiana University">
+                </a>
+              </div>
+              <div class="org-item">
+                <a href="https://www.utsouthwestern.edu/" target="_blank" rel="noopener noreferrer">
+                  <img src="../images/orgs/UT.png" alt="UT Southwestern Medical Center">
+                </a>
+              </div>
+              <div class="org-item">
+                <a href="https://www.niaaa.nih.gov/" target="_blank" rel="noopener noreferrer">
+                  <img src="../images/orgs/NIH.png" alt="National Institute on Alcohol Abuse and Alcoholism">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col text-center">
+            <p class="lead funding-note">AlcHepNet is a clinical and translational research initiative funded by the National Institute on Alcohol Abuse and Alcoholism (NIAAA), a division of NIH.</p>
+          </div>
+        </div>
+        <!-- /END THE FEATURETTES -->
+      </div><!-- /.container -->
+    </div><!-- /.container -->
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            $(this).attr("href", "../" + href);
+          }
+        });
+
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+      
+      // Load and Initialize Map
+      loadUSMap();
+    });
+    
+    async function loadUSMap() {
+      const mapWrapper = document.getElementById('usMapWrapper');
+      
+      try {
+        // Load the professional US map SVG
+        const response = await fetch('../utilities/us.svg');
+        const svgText = await response.text();
+        mapWrapper.innerHTML = svgText;
+        
+        // Wait for SVG to be in DOM, then fix styles
+        setTimeout(() => {
+          const svg = document.querySelector('#usMapWrapper svg');
+          if (svg) {
+            // Override the inline styles that prevent display
+            svg.removeAttribute('style');
+            svg.style.strokeLinejoin = 'round';
+            svg.style.stroke = '#fff';
+            svg.style.fill = 'none';
+            
+            // Make sure all paths are visible
+            const paths = svg.querySelectorAll('path');
+            paths.forEach(path => {
+              // Remove inline styles that might hide the map
+              const currentStyle = path.getAttribute('style');
+              if (currentStyle) {
+                path.setAttribute('style', currentStyle.replace('fill:#f9f9f9', 'fill:#e8e8e8'));
+              }
+            });
+          }
+          initializeMap();
+        }, 100);
+      } catch (error) {
+        console.error('Error loading map:', error);
+        mapWrapper.innerHTML = '<p style="text-align:center; color:#999;">Map could not be loaded</p>';
+      }
+    }
+    
+    function initializeMap() {
+      const svg = document.querySelector('#usMapWrapper svg');
+      if (!svg) return;
+      
+      // Create tooltip
+      const tooltip = document.createElement('div');
+      tooltip.className = 'map-tooltip';
+      tooltip.id = 'mapTooltip';
+      document.querySelector('.us-map-wrapper').appendChild(tooltip);
+      
+      // Map of state IDs to clinical centers (adjusted to match state centers)
+      const stateCenters = {
+        'TX': [{ id: 'cc-utsw', name: 'University of Texas Southwestern', x: 510, y: 410 }],
+        'MN': [{ id: 'cc-mayo', name: 'Mayo Clinic', x: 560, y: 160 }],
+        'IN': [
+          { id: 'cc-iu-dcc', name: 'Indiana University DCC', x: 688, y: 240 },
+          { id: 'cc-iu-clinical', name: 'Indiana University Clinical Center', x: 686, y: 250 }
+        ],
+        'OH': [{ id: 'cc-cleveland', name: 'Cleveland Clinic', x: 740, y: 210 }],
+        'KY': [{ id: 'cc-louisville', name: 'University of Louisville', x: 700, y: 273 }],
+        'VA': [{ id: 'cc-vcu', name: 'Virginia Commonwealth University', x: 825, y: 250 }]
+      };
+      
+      // Highlight states with centers
+      Object.keys(stateCenters).forEach(stateId => {
+        const statePath = svg.querySelector(`path[id="${stateId}"]`);
+        if (statePath) {
+          statePath.classList.add('has-center');
+          
+          // Add click handler to state
+          statePath.style.cursor = 'pointer';
+          statePath.addEventListener('click', function() {
+            // If multiple centers in state, scroll to first one
+            const centers = stateCenters[stateId];
+            if (centers && centers.length > 0) {
+              scrollToCenter(centers[0].id);
+            }
+          });
+          
+          // Add hover tooltip
+          statePath.addEventListener('mouseenter', function(e) {
+            const centers = stateCenters[stateId];
+            const centerNames = centers.map(c => c.name).join(', ');
+            tooltip.textContent = centerNames;
+            tooltip.classList.add('show');
+            updateTooltipPosition(e);
+          });
+          
+          statePath.addEventListener('mousemove', updateTooltipPosition);
+          
+          statePath.addEventListener('mouseleave', function() {
+            tooltip.classList.remove('show');
+          });
+        }
+      });
+      
+      // Add marker circles for each center
+      const markersGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      markersGroup.setAttribute('id', 'clinical-markers');
+      
+      Object.keys(stateCenters).forEach(stateId => {
+        stateCenters[stateId].forEach(center => {
+          const marker = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+          marker.classList.add('map-marker');
+          marker.setAttribute('data-target', center.id);
+          marker.setAttribute('data-name', center.name);
+          
+          // Create visible circle
+          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('cx', center.x);
+          circle.setAttribute('cy', center.y);
+          circle.setAttribute('r', '6');
+          
+          // Create invisible larger circle for easier clicking
+          const clickArea = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          clickArea.setAttribute('cx', center.x);
+          clickArea.setAttribute('cy', center.y);
+          clickArea.setAttribute('r', '15');
+          clickArea.setAttribute('fill', 'transparent');
+          clickArea.setAttribute('stroke', 'none');
+          
+          marker.appendChild(clickArea);
+          marker.appendChild(circle);
+          markersGroup.appendChild(marker);
+          
+          // Add click handler
+          marker.addEventListener('click', function() {
+            scrollToCenter(center.id);
+          });
+          
+          // Add hover handlers
+          marker.addEventListener('mouseenter', function(e) {
+            tooltip.textContent = center.name;
+            tooltip.classList.add('show');
+            updateTooltipPosition(e, circle);
+          });
+          
+          marker.addEventListener('mousemove', function(e) {
+            updateTooltipPosition(e, circle);
+          });
+          
+          marker.addEventListener('mouseleave', function() {
+            tooltip.classList.remove('show');
+          });
+        });
+      });
+      
+      svg.appendChild(markersGroup);
+      
+      function scrollToCenter(centerId) {
+        const targetCard = document.getElementById(centerId);
+        if (targetCard) {
+          targetCard.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+          
+          targetCard.classList.add('highlight');
+          setTimeout(() => {
+            targetCard.classList.remove('highlight');
+          }, 1500);
+        }
+      }
+      
+      function updateTooltipPosition(e, element) {
+        const mapWrapper = document.querySelector('.us-map-wrapper');
+        const rect = mapWrapper.getBoundingClientRect();
+        
+        let x, y;
+        if (element) {
+          // For circles, get their center position
+          const elementRect = element.getBoundingClientRect();
+          x = elementRect.left + elementRect.width / 2 - rect.left;
+          y = elementRect.top - rect.top;
+        } else {
+          // For mouse events
+          x = e.clientX - rect.left;
+          y = e.clientY - rect.top;
+        }
+        
+        tooltip.style.left = x + 'px';
+        tooltip.style.top = y + 'px';
+      }
+    }
+  </script>
+</body>
+</html>

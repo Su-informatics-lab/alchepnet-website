@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Ardac">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>ARDaC - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <div class="container">
+        <h3 class="section-title">ARDaC</h3>
+        
+        <div style="text-align: center; margin: 2rem 0;">
+          <img src="../images/ardac/overview.png" alt="ARDaC Overview" class="img-fluid" style="max-width: 100%; height: auto;">
+        </div>
+        
+        <div class="row featurette">
+          <div class="col lead">
+            <p>
+              The Alcoholic Hepatitis Network project, AlcHepNet (<a href="http://www.alchepnet.org/" target="_blank">http://www.alchepnet.org/</a>), is sponsored by the National Institute on Alcohol Abuse and Alcoholism (NIAAA). AlcHepNet aims to improve the treatment of alcohol-associated hepatitis, a leading cause of liver-related morbidity and mortality. The AlcHepNet consortium comprises eight clinical study sites and ten research projects, including clinical, translational, and primary or preclinical studies. The network is recruiting over 1,300 participants for clinical studies, following up with participants for 180 days, collecting more than 78,000 blood, urine, saliva, and liver biopsy bio-samples, capturing demographic and behavioral features, clinical conditions, laboratory tests, treatments, and outcomes, and generating multiomics data from microbiome, immunologic, proteomic, metabolomic, lipidomic, and RNA/ChIP-sequencing analyses. The Indiana University Data Coordinating Center (IU DCC) and the University of Massachusetts Data Coordinating Center (UMass DCC) are collaboratively providing the essential research infrastructure, including experimental design, study implementation, data management, and statistical analysis in support of the two primary studies within the network, a clinical trial and an observational study, as well as the translational projects that utilize the biospecimens collected by the two primary studies. To facilitate effective research use of the rich and complex AlcHepNet data, the IU DCC has developed ARDaC, the Alcohol Research Data Commons, as the central data hub and research nexus (<a href="https://portal.ardac.org/" target="_blank">https://portal.ardac.org/</a>).
+            </p>
+            
+            <p>
+              <strong>For more information, visit <a href="https://ardac.org/" target="_blank">https://ardac.org/</a></strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            if(href.startsWith("Data_Access/")) {
+              $(this).attr("href", href.replace("Data_Access/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>

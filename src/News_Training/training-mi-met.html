@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Training MI-MET">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Training MI-MET - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .form-section {
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+
+      <!-- Header -->
+      <div class="row featurette">
+        <div class="col">
+          <h2 class="featurette-heading">Training – MI-MET</h2>
+          <p class="lead">
+            Standardized MI-MET training video for alcohol use intervention techniques.
+          </p>
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- Training Video -->
+      <div class="form-section">
+        <h3><strong>1.</strong> MI-MET Training Video</h3>
+        <p class="lead">
+          This video demonstrates the full MI-MET interview workflow.
+        </p>
+
+        <div class="alert alert-info d-flex align-items-center" role="alert">
+          <i class="fas fa-lock fa-2x mr-3"></i>
+          <div>
+            <strong>Members only.</strong> The MI-MET training video is available in the restricted member section. Please log in via the <a href="https://teams.microsoft.com/l/channel/19%3AcwQBF3swXaWnNJRSQwRab8C2_x6UNW6YLOzqIMX2ojk1%40thread.tacv2/General?groupId=401ffafb-9105-41c2-8293-16f4c5ed6ff2&tenantId=1113be34-aed1-4d00-ab4b-cdd02510be91" target="_blank" class="alert-link">Members portal</a> to access the video.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            $(this).attr("href", "../" + href);
+          }
+        });
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>

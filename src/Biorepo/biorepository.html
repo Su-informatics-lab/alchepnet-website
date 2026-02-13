@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Biorepository">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>AlcHepNet - Biorepository</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <h3 class="section-title">Biorepository</h3>
+      
+      <!-- <hr class="featurette-divider"> -->
+      
+      <div class="row featurette">
+        <div class="col lead">
+          <p>
+            The AlcHepNet Biorepository is a part of the Indiana University Data Coordinating Center (DCC). Its primary function is to support biospecimen collection for ongoing AlcHepNet studies. The DCC oversees the operation of the biorepository in partnership with the <a href="https://indianabiobank.org" target="_blank" rel="noopener noreferrer">Indiana Biobank (IB)</a>, which is a state-of-the-art facility for biospecimen storage, tracking, and distribution. The <a href="team.html">biorepository team</a> uses a comprehensive, searchable database to manage all biospecimens and the associated metadata. The DCC provides a link between stored biospecimen data to facilitate research.
+          </p>
+          
+        </div>
+      </div>
+
+      <div class="row featurette">
+        <div class="col">
+          <img src="../images/biorepo/biobank.jpg" 
+               alt="Biobank" 
+               class="img-fluid rounded mb-4"
+               style="max-height: 600px; width: 100%; object-fit: cover;">
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if (href && !href.startsWith("http") && !href.startsWith("#")) {
+            $(this).attr("href", "../" + href);
+          }
+        });
+        
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if (src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Legacy Studies">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>AlcHepNet - Legacy Studies</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <h3 class="section-title">Legacy Studies:</h3>
+      
+      <!-- <hr class="featurette-divider"> -->
+      
+      <div class="row featurette">
+        <div class="col lead">
+          <h4>AlcHepNet Observational Study:</h4>
+          
+          <p>
+            The purpose of this observational study is to establish a clinical database for personal health information and a biorepository for blood, urine, saliva, and stool samples from persons with alcohol-associated hepatitis, heavy drinkers, and healthy controls. Data and biosamples will be used for research related to alcoholic hepatitis or other diseases.
+          </p>
+          
+          <p>
+            <strong>More information about the AHN Observational Study</strong> can be found at<br>
+            <a href="https://clinicaltrials.gov/study/NCT03850899?term=NCT3850899&rank=1" target="_blank" rel="noopener noreferrer">
+              https://clinicaltrials.gov/study/NCT03850899?term=NCT3850899&rank=1
+            </a>
+          </p>
+          
+          <hr class="featurette-divider">
+          
+          <h4>Trial of Anakinra (Plus Zinc) or Prednisone in Patients with Severe Alcoholic Hepatitis (AlcHepNet)</h4>
+          
+          <p>
+            This multicenter, randomized, double-blind, placebo-controlled clinical trial has focused on new treatments of severe alcoholic hepatitis (AH), a life-threatening stage of alcoholic liver injury that has a short-term mortality rate much higher than that of other liver diseases.
+          </p>
+          
+          <p>
+            The primary objective of the study is to determine the clinical efficacy and safety of Anakinra (plus zinc) compared to the current standard medical treatment consisting of prednisone in participants with clinically severe AH. Key secondary objectives are as follows: (a) to evaluate the use of biomarkers to assess disease severity and treatment response; and (b) to develop novel endpoints to overcome the limitations of current assessment strategies for severe AH.
+          </p>
+          
+          <p>
+            <strong>More information about the Anakinra vs. Prednisone trial</strong> can be found at<br>
+            <a href="https://clinicaltrials.gov/study/NCT04072822?term=NCT4072822&rank=1" target="_blank" rel="noopener noreferrer">
+              https://clinicaltrials.gov/study/NCT04072822?term=NCT4072822&rank=1
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if (href && !href.startsWith("http") && !href.startsWith("#")) {
+            $(this).attr("href", "../" + href);
+          }
+        });
+        
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if (src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>
+

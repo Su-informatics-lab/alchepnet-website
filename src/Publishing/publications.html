@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Publications">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>AlcHepNet - Publications</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .publications-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .page-header {
+      margin-bottom: 2rem;
+    }
+    .page-header h1 {
+      margin-bottom: 0.5rem;
+    }
+    .page-header p {
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+    .total-count {
+      font-size: 1rem;
+      color: #888;
+      margin-bottom: 1.5rem;
+    }
+    .year-section {
+      margin-bottom: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .year-section[open] {
+      border-color: #2e3b92;
+    }
+    .year-header {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #2e3b92;
+      cursor: pointer;
+      padding: 1rem 1.5rem;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      user-select: none;
+    }
+    .year-header::-webkit-details-marker {
+      display: none;
+    }
+    .year-header::before {
+      content: "▶";
+      font-size: 0.9rem;
+      transition: transform 0.2s;
+      margin-right: 0.5rem;
+    }
+    .year-section[open] .year-header::before {
+      transform: rotate(90deg);
+    }
+    .year-header:hover {
+      background-color: #f8f9fa;
+    }
+    .year-count {
+      font-size: 0.85rem;
+      font-weight: normal;
+      color: #666;
+      background: #f0f0f0;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+    .year-content {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+    ul.pub-list {
+      margin: 0;
+      padding-left: 1.5rem;
+      list-style-type: decimal;
+    }
+    ul.pub-list li {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    ul.pub-list li strong {
+      color: #2e3b92;
+    }
+    ul.pub-list li em {
+      color: #555;
+    }
+    .pmid {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .pmid a {
+      color: #2e3b92;
+      text-decoration: none;
+    }
+    .pmid a:hover {
+      text-decoration: underline;
+    }
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <div class="publications-container">
+        <div class="page-header">
+          <h1>AlcHepNet Publications</h1>
+          <p class="total-count">Loading publications...</p>
+        </div>
+
+        <div id="pubContainer">
+          <div class="loading">
+            <i class="fas fa-spinner fa-spin fa-2x"></i>
+            <p>Loading publications...</p>
+          </div>
+        </div>
+
+        <div id="yearContainer"></div>
+
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    // Load publications data from external source
+    let publicationsData = null;
+    let allYears = [];
+
+    // Initialize
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            if(href.startsWith("Publishing/")) {
+              $(this).attr("href", href.replace("Publishing/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        $("#footer-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            if(href.startsWith("Publishing/")) {
+              $(this).attr("href", href.replace("Publishing/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+      });
+
+      // Load publications data
+      loadPublications();
+    });
+
+    function loadPublications() {
+      $.getJSON('doc/all_publications.json')
+        .done(function(data) {
+          publicationsData = data;
+          // Sort years in descending order (2025 -> 2008)
+          allYears = Object.keys(data.publicationsByYear).sort((a, b) => {
+            return parseInt(b) - parseInt(a);
+          });
+          
+          // Update total count
+          $('.total-count').html(`Total: <strong>${data.grantInfo.totalPublications}</strong> publications (${allYears[allYears.length - 1]} - ${allYears[0]})`);
+          
+          // Hide loading message
+          $('#pubContainer').hide();
+          
+          // Render all publications
+          renderPublications();
+        })
+        .fail(function() {
+          $('#pubContainer').html(`
+            <div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Error Loading Publications</h4>
+              <p>Unable to load publications data. Please try again later or download the complete list:</p>
+              <p class="mt-2">
+                <a href="doc/Publicatio List by Grant Number.docx" class="btn btn-primary" target="_blank">
+                  <i class="fas fa-download"></i> Download Publication List (DOCX)
+                </a>
+              </p>
+            </div>
+          `);
+        });
+    }
+
+    function renderPublications() {
+      if (!publicationsData) return;
+      
+      // Clear container
+      $('#yearContainer').empty();
+      
+      // Render all year sections as collapsible details
+      allYears.forEach((year, index) => {
+        const pubs = publicationsData.publicationsByYear[year];
+        
+        // Create collapsible section
+        const yearSection = $('<details class="year-section"></details>');
+        
+        // Open first year by default
+        if (index === 0) {
+          yearSection.attr('open', 'open');
+        }
+        
+        const yearHeader = $(`<summary class="year-header">${year} <span class="year-count">${pubs.length} publications</span></summary>`);
+        yearSection.append(yearHeader);
+        
+        const yearContent = $('<div class="year-content"></div>');
+        const pubList = $('<ul class="pub-list"></ul>');
+        pubs.forEach(pub => {
+          pubList.append(`<li>${pub.content}</li>`);
+        });
+        yearContent.append(pubList);
+        yearSection.append(yearContent);
+        
+        $('#yearContainer').append(yearSection);
+      });
+    }
+  </script>
+</body>
+</html>

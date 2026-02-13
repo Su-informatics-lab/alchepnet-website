@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="News and Publications">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>News & Publications - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .page-header {
+      margin-bottom: 2rem;
+    }
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--btn-primary-bg, #80abc1);
+    }
+    
+    /* News Items */
+    .news-item {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .news-item:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-color: var(--btn-primary-bg, #80abc1);
+    }
+    .news-date {
+      flex-shrink: 0;
+      width: 100px;
+      text-align: center;
+      padding: 0.75rem;
+      background: var(--btn-primary-bg, #80abc1);
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .news-date-day {
+      font-size: 2rem;
+      line-height: 1;
+      display: block;
+    }
+    .news-date-month {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 0.25rem;
+    }
+    .news-date-year {
+      font-size: 0.8rem;
+      opacity: 0.9;
+      display: block;
+      margin-top: 0.25rem;
+    }
+    .news-content {
+      flex: 1;
+    }
+    .news-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    .news-category {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: #e7f3ff;
+      color: #0066cc;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .news-description {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .news-link {
+      color: var(--btn-primary-bg, #80abc1);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .news-link:hover {
+      text-decoration: underline;
+      color: var(--btn-primary-hover, #6a9ab1);
+    }
+    
+    /* Publication Items */
+    .publication-item {
+      padding: 1.5rem;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .publication-item:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-color: var(--btn-primary-bg, #80abc1);
+    }
+    .publication-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .publication-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .publication-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .publication-authors {
+      color: #555;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    .publication-journal {
+      color: #666;
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+    .publication-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .publication-link {
+      padding: 0.4rem 0.9rem;
+      background: #f0f0f0;
+      color: #333;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .publication-link:hover {
+      background: var(--btn-primary-bg, #80abc1);
+      color: white;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      color: #666;
+    }
+    .empty-state i {
+      font-size: 3rem;
+      color: #ccc;
+      margin-bottom: 1rem;
+    }
+    .empty-state p {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .news-item {
+        flex-direction: column;
+      }
+      .news-date {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <div class="page-header">
+        <h1>News & Publications</h1>
+        <p class="lead">Latest updates, announcements, and publications from AlcHepNet</p>
+      </div>
+
+      <!-- News Section -->
+      <section style="margin-bottom: 4rem;">
+        <h2 class="section-title"><i class="fas fa-newspaper"></i> Latest News & Announcements</h2>
+        
+        <div class="empty-state">
+          <i class="fas fa-newspaper"></i>
+          <p>xxxx</p>
+        </div>
+      </section>
+
+      <!-- Recent Publications Section -->
+      <section>
+        <h2 class="section-title"><i class="fas fa-book-open"></i> Recent Publications</h2>
+        
+        <div class="empty-state">
+          <i class="fas fa-book-open"></i>
+          <p>xxxx</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            $(this).attr("href", "../" + href);
+          }
+        });
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>

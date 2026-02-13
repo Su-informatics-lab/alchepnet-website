@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Dcc">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Data Coordinating Centers - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+
+      <!-- Our Team Section -->
+      <div class="staff-section">
+        <h3 class="section-title">IU DCC (Data Coordinating Center)</h3>
+        <p class="lead">
+          The DCC will play a central role in coordinating the implementation of all aspects of the trial and the
+          communications between the clinical centers, study committees, data safety and monitoring board, the
+          steering committee, and with the NIAAA. The DCC will be responsible for data integrity. The DCC will also
+          oversee the performance of the biorepository and coordinate movement of biospecimens in and out of the
+          biorepository.
+        </p>
+
+        <div class="staff-card">
+          <img src="../images/dcc/Samer.jpg" alt="Samer Gawrieh" class="staff-photo">
+          <div class="staff-info">
+            <h4>Samer Gawrieh, MD</h4>
+            <div class="staff-title">MPI, Clinical Director</div>
+            <a href="mailto:sgawrieh@iu.edu" class="staff-email">sgawrieh@iu.edu</a>
+          </div>
+        </div>
+        <div class="staff-card">
+          <img src="../images/dcc/Wanzhu.jpg" alt="Wanzhu Tu" class="staff-photo">
+          <div class="staff-info">
+            <h4>Wanzhu Tu, PhD</h4>
+            <div class="staff-title">MPI, Data-analytical Director</div>
+            <a href="mailto:wtu@iu.edu" class="staff-email">wtu1@iu.edu</a>
+          </div>
+        </div>
+        <div class="staff-card">
+          <img src="../images/dcc/Savannah.png" alt="Savannah Yarnelle" class="staff-photo">
+          <div class="staff-info">
+            <h4>Savannah Yarnelle</h4>
+            <div class="staff-title">Program Coordinator and Main Contact</div>
+            <a href="mailto:samussel@iu.edu" class="staff-email">samussel@iu.edu</a>
+          </div>
+        </div>
+        <div class="staff-card">
+          <img src="../images/dcc/Carla.png" alt="Carla Kettler" class="staff-photo">
+          <div class="staff-info">
+            <h4>Carla Kettler</h4>
+            <div class="staff-title">Lead Data Manager</div>
+            <a href="mailto:samussel@iu.edu" class="staff-email">ckettler@iu.edu</a>
+          </div>
+        </div>
+        <div class="staff-card">
+          <img src="../images/dcc/Jing.png" alt="Jing Su" class="staff-photo">
+          <div class="staff-info">
+            <h4>Jing Su</h4>
+            <div class="staff-title">Lead, Alcohol Research Data Commons Team</div>
+            <a href="mailto:samussel@iu.edu" class="staff-email">su1@iu.edu</a>
+          </div>
+        </div>
+        <div class="staff-card">
+          <img src="../images/dcc/Tae-Hwi.png" alt="Tae-Hwi Linus Schwantes-An" class="staff-photo">
+          <div class="staff-info">
+            <h4>Tae-Hwi Linus Schwantes-An</h4>
+            <div class="staff-title">Lead, AlcHepNet Biorepository Team</div>
+            <a href="mailto:samussel@iu.edu" class="staff-email">tlschwan@iu.edu</a>
+          </div>
+        </div>
+
+        <div class="section-chart" style="margin-top: 3rem; text-align: center;">
+          <h4 style="margin-bottom: 1.5rem; font-weight: 600;">DCC Organization Chart</h4>
+          <div style="background: linear-gradient(135deg, #e8f3f8 0%, #d8e8f0 100%); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: inline-block; max-width: 100%;">
+            <img src="../images/dcc/DCC_chart.png" alt="DCC Organization Chart" class="img-fluid" style="border-radius: 8px;">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function () {
+      $("#navbar-include").load("../navbar.html", function () {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            $(this).attr("href", "../" + href);
+          }
+        });
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function () {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+
+</html>

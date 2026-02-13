@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Link">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Link - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <div class="container">
+        <h3 class="section-title">ARDaC Resources</h3>
+        
+        <div class="row featurette">
+          <div class="col lead">
+            <h4>Access ARDaC</h4>
+            <ul>
+              <li><strong>ARDaC Portal:</strong> <a href="https://portal.ardac.org/" target="_blank">https://portal.ardac.org/</a></li>
+              <li><strong>ARDaC Website:</strong> <a href="https://ardac.org/" target="_blank">https://ardac.org/</a></li>
+              <li><strong>GitHub:</strong> <a href="https://github.com/jing-su/ardac" target="_blank">github.com/jing-su/ardac</a></li>
+            </ul>
+            
+            <h4>Contact</h4>
+            <p>Email: <a href="mailto:ardac@iu.edu">ardac@iu.edu</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            if(href.startsWith("Data_Access/")) {
+              $(this).attr("href", href.replace("Data_Access/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>
