@@ -10,6 +10,10 @@
 
 /* GLOBAL STYLES
 -------------------------------------------------- */
+strong {
+    font-weight: 500;
+}
+
 body {
     color: #000;
     padding-top: 0;
@@ -152,6 +156,22 @@ table.border-0 td {
     padding: 0 1rem;
     margin: 0 -1rem;
     position: relative;
+}
+
+.navbar-toggler {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 0.35rem 0.6rem;
+    align-self: center;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus {
+    border-color: rgba(255, 255, 255, 0.9);
+    outline: none;
 }
 
 .navbar-nav {
@@ -830,7 +850,6 @@ abbr[title] {
     color: #333;
     margin-bottom: 0.5rem;
     line-height: 1.3;
-    text-transform: uppercase;
 }
 
 .staff-pronouns {
@@ -935,8 +954,13 @@ abbr[title] {
 .clinic-card .staff-photo,
 .clinic-card .placeholder-photo {
     width: 80px;
+    min-width: 80px;
     height: 100px;
+    min-height: 100px;
     margin-right: 0.75rem;
+    flex-shrink: 0;
+    object-fit: cover;
+    object-position: top center;
 }
 
 .clinic-card .staff-info h4 {
@@ -995,6 +1019,48 @@ abbr[title] {
     }
 }
 
+/* From 992px down: avoid overlap by making search/links flow and allow wrap */
+@media (max-width: 1199px) {
+    .nav-row {
+        flex-wrap: wrap;
+    }
+    
+    .nav-row .navbar-collapse {
+        flex-wrap: wrap;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+    
+    .navbar-nav {
+        margin-left: 0;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+    
+    .nav-row .form-inline {
+        position: static !important;
+        transform: none !important;
+        right: auto !important;
+        top: auto !important;
+        margin-left: auto;
+        margin-right: 0.5rem;
+        height: auto;
+    }
+    
+    .nav-row .navbar-text {
+        position: static !important;
+        transform: none !important;
+        right: auto !important;
+        top: auto !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar-nav {
+        margin-left: 0;
+    }
+}
+
 @media (max-width: 768px) {
     .logo-row {
         flex-direction: column;
@@ -1014,6 +1080,38 @@ abbr[title] {
     
     .site-name {
         font-size: 1.25rem;
+    }
+    
+    .nav-row .navbar-collapse {
+        flex-basis: 100%;
+        margin-top: 0.5rem;
+    }
+    
+    .nav-row .navbar-nav {
+        flex-direction: column !important;
+        margin: 0;
+    }
+    
+    .nav-row .navbar-nav .nav-item {
+        margin-right: 0;
+        margin-bottom: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    .nav-row .navbar-nav .nav-link,
+    .nav-row .navbar-nav .dropdown-toggle {
+        padding: 0.6rem 0.75rem;
+    }
+    
+    .nav-row .form-inline {
+        margin: 0.5rem 0;
+        padding: 0.5rem 0;
+        justify-content: flex-start;
+    }
+    
+    .nav-row .navbar-text {
+        margin: 0.5rem 0;
+        padding: 0.5rem 0;
     }
     
     .staff-section {
