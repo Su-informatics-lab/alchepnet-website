@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Codebook">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Code Book - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <div class="container">
+        <h3 class="section-title">Codebooks</h3>
+        
+        <p class="lead" style="margin-top: 1rem;">
+          Codebooks provide detailed documentation of all variables, measurements, and coding schemes used in AlcHepNet studies. These data dictionaries are essential for understanding and analyzing the research data.
+        </p>
+        
+        <hr class="featurette-divider">
+        
+        <div class="row featurette">
+          <div class="col lead">
+            <h4>Legacy Studies - Available Now</h4>
+            <p>Codebooks for completed AlcHepNet studies are available for download:</p>
+            
+            <div style="background: #f8f9fa; padding: 1.5rem; border-left: 4px solid #007bff; margin: 1.5rem 0;">
+              <h5>AlcHepNet Observational Study</h5>
+              <p class="mb-2">Data dictionary for the observational cohort study (NCT03850899).</p>
+              <p class="mb-0">
+                <em>Codebook document will be available soon. Please contact the Data Coordinating Center for access.</em>
+              </p>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 1.5rem; border-left: 4px solid #007bff; margin: 1.5rem 0;">
+              <h5>Anakinra vs. Prednisone Trial</h5>
+              <p class="mb-2">Data dictionary for the completed clinical trial (NCT04072822).</p>
+              <p class="mb-0">
+                <em>Codebook document will be available soon. Please contact the Data Coordinating Center for access.</em>
+              </p>
+            </div>
+            
+            <h4 style="margin-top: 2rem;">Ongoing Studies</h4>
+            <div style="background: #fff3cd; padding: 1.5rem; border-left: 4px solid #ffc107; margin: 1.5rem 0;">
+              <h5>ITAALD Trial</h5>
+              <p class="mb-0">
+                Codebooks for ongoing studies will be published after associated manuscripts are released to ensure data integrity and publication priority.
+              </p>
+            </div>
+            
+            <h4 style="margin-top: 2rem;">Request Access</h4>
+            <p>
+              For questions about codebooks or to request early access for collaborative research purposes, please contact:
+            </p>
+            <ul>
+              <li><strong>Data Coordinating Center:</strong> <a href="mailto:samussel@iu.edu">samussel@iu.edu</a></li>
+              <li>See our <a href="data-requesting-process.html">Data Requesting Process</a> for information on accessing AlcHepNet data</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            // 对于 Data_Access 目录下的链接，直接使用文件名
+            if(href.startsWith("Data_Access/")) {
+              $(this).attr("href", href.replace("Data_Access/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+        // 修复图片路径
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>

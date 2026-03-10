@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Publication Subcommittee">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Publication Subcommittee - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <div class="row featurette">
+        <div class="col">
+          <h1 class="section-title">Publication Subcommittee Charter</h1>
+          <p class="lead">
+            The Publication and Ancillary Study Committee (PAC) oversees all publications and ancillary studies arising from AlcHepNet research. The committee reviews proposals, ensures scientific merit, and coordinates authorship across the network.
+          </p>
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- Charter Section -->
+      <div class="content-section">
+        <h3>Charter</h3>
+        <p>
+          The PAC Charter defines the committee's roles, responsibilities, and procedures for reviewing publication and ancillary study proposals. It outlines the governance structure and ensures equitable collaboration across the AlcHepNet consortium.
+        </p>
+        <p>
+          <a href="doc/charter/PAC_Charter 9.16.25.docx" class="btn btn-primary" target="_blank">
+            <i class="fas fa-file-word"></i> Download Charter (DOCX)
+          </a>
+        </p>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- Guidelines Section -->
+      <div class="content-section">
+        <h3>Guidelines</h3>
+        <p>
+          The PAC Guidelines provide detailed instructions for preparing and submitting publication proposals and ancillary study applications. These guidelines help investigators understand requirements, timelines, and expectations for proposal review.
+        </p>
+        <p>
+          <a href="doc/charter/AHN-ITAALD PAC Guidelines.docx" class="btn btn-primary" target="_blank">
+            <i class="fas fa-file-word"></i> Download Guidelines (DOCX)
+          </a>
+        </p>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- Flow Diagram Section -->
+      <div class="content-section">
+        <h3>Publication Process Flow Diagram</h3>
+        <p>
+          The flow diagram illustrates the step-by-step process for submitting, reviewing, and approving publication proposals within the AlcHepNet network.
+        </p>
+        <div class="text-center" style="margin: 2rem 0;">
+          <img src="doc/charter/flow.png" alt="Publication Process Flow Diagram" class="img-fluid" style="max-width: 100%;">
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        // 修复navbar中的链接路径
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            if(href.startsWith("Publishing/")) {
+              $(this).attr("href", href.replace("Publishing/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        $("#footer-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            if(href.startsWith("Publishing/")) {
+              $(this).attr("href", href.replace("Publishing/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+        console.log('Footer loaded and links updated');
+      });
+    });
+  </script>
+</body>
+</html>

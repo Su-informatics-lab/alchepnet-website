@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Submission Of Publication Proposal">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Submission of Publication Proposal - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+      <div class="row featurette">
+        <div class="col">
+          <h1 class="featurette-heading text-center">AlcHepNet Consortium Publication Proposal</h1>
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <p class="lead text-center">
+        Download the publication proposal form below, complete and sign it, then email the completed form to Savannah Yarnelle.
+      </p>
+
+      <div class="text-center" style="margin-bottom: 2rem;">
+        <a href="doc/Template - AlcHepNet Publication Proposal.docx" class="btn btn-primary" target="_blank">
+          <i class="fas fa-download"></i> Download Proposal Template (DOCX)
+        </a>
+        <a href="mailto:samussel@iu.edu?subject=AlcHepNet%20Publication%20Proposal%20Submission&body=Dear%20Savannah,%0D%0A%0D%0AI%20am%20submitting%20a%20publication%20proposal%20for%20AlcHepNet.%0D%0A%0D%0APlease%20find%20my%20completed%20proposal%20form%20attached.%0D%0A%0D%0AThank%20you,%0D%0A" class="btn btn-outline-primary ml-2">
+          <i class="fas fa-envelope"></i> Email completed form to Savannah
+        </a>
+      </div>
+
+      <p class="text-center text-muted">
+        Contact: <a href="mailto:samussel@iu.edu">Savannah Yarnelle</a> (samussel@iu.edu)
+      </p>
+
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            if(href.startsWith("Publishing/")) {
+              $(this).attr("href", href.replace("Publishing/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+        
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        // 修复footer中的链接
+        $("#footer-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            if(href.startsWith("Publishing/")) {
+              $(this).attr("href", href.replace("Publishing/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+        console.log('Footer loaded and links updated');
+      });
+    });
+  </script>
+</body>
+</html>

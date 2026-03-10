@@ -1,77 +1,24 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Alcoholic Hepatatis Network Site Contacts">
-    <meta name="author" content="AlcHepNet">
-	<meta name="og:image" content="./images/Logo_AlcHepNet_2_Crop.jpg">
-    <link rel="icon" href="favicon.ico">
-    <title>AlcHepNet - Site Contacts</title>
-    <!-- <link href="https://ummscwmuhs.quickbase.com/up/bn79rmeux/g/re/eg/va/bootstrap.min.css" rel="stylesheet"> -->
-	<link href="bootstrap.min.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Site Contact">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="favicon.ico">
+  <title>AlcHepNet - Site Contacts</title>
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
 
-    <header>
-
-      <nav class="navbar navbar-expand-md navbar-light">
-        <a class="navbar-brand" href="#"><img src="AlcHepNet_Website/AlcHepNet_Logos/Logo_AlcHepNet_4_Edit_2.png" class=" " alt="AlcHepNet is a clinical and translational research initiative funded by the National Institute on Alcohol Abuse and Alcoholism (NIAAA), a division of NIH." /></a>
-
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="dropdown-toggle btn" id="clinical-trials" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clinical Trials</a>
-              <ul class="dropdown-menu" aria-labelledby="clinical-trials">
-                <li class="dropdown-submenu">
-                  <a class="dropdown-item dropdown-toggle" id="itaald-trial" href="#">ITAALD Trial</a>
-                  <ul class="dropdown-menu" aria-labelledby="itaald-trial">
-                    <li><a class="dropdown-item" href="itaald-eligibility.html">Eligibility</a></li>
-                    <li><a class="dropdown-item" href="itaald-executive-summary.html">Executive Summary</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li class="dropdown-submenu">
-                  <a class="dropdown-item dropdown-toggle" id="legacy-studies" href="#">Legacy Studies</a>
-                  <ul class="dropdown-menu" aria-labelledby="legacy-studies">
-                    <li class="dropdown-submenu">
-                      <a class="dropdown-item dropdown-toggle" id="obs-study" href="#">Observational Study</a>
-                      <ul class="dropdown-menu" aria-labelledby="obs-study">
-                        <li><a class="dropdown-item" href="eligibility.html">Eligibility</a></li>
-                        <li><a class="dropdown-item" href="executive-summary.html">Executive Summary</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-submenu">
-                      <a class="dropdown-item dropdown-toggle" id="int-trial" href="#">Interventional Trial</a>
-                      <ul class="dropdown-menu" aria-labelledby="int-trial">
-                        <li><a class="dropdown-item" href="interventional-eligibility.html">Eligibility</a></li>
-                        <li><a class="dropdown-item" href="interventional-executive-summary.html">Executive Summary</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="publications.html">Publications &amp; Resources</a>
-            </li>
-			      <li class="nav-item active">
-              <a class="nav-link" href="./site-contact.html">Site Contacts <span class="sr-only">(current)</span></a>
-            </li>
-
-          </ul>
-          <span class="navbar-text" >
-			<small><a class="nav-link" href="https://redcap.uits.iu.edu/">IU REDCap</a></small><br>
-			</span>
-      </nav>
-    </header>
-
-    <main role="main">
-      <div class="container site-contacts">
+  <main role="main">
+    <div class="container marketing">
+<div class="container site-contacts">
         <div class="row featurette">
           <div class="col">
             <h1>Site Contacts</h1>
@@ -235,13 +182,24 @@
         </div>
         </div>
       </footer>
-    </main>
+    </div>
+  </main>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <script src="jquery-3.3.1.slim.min.js"></script>
-    <script src="popper.min.js"></script>
-    <script src="bootstrap.min.js"></script>
-	<script src="main.js"></script>
-  </body>
+  <div id="footer-include"></div>
+
+  <script src="popper.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <script src="simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("navbar.html", function() {
+        console.log('Navbar loaded');
+      });
+      $("#search-modal-include").load("search-modal.html");
+      $("#footer-include").load("footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
 </html>

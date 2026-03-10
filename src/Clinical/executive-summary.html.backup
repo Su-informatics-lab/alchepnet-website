@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="AlcHepNet Observational Study Executive Summary">
+    <meta name="author" content="AlcHepNet">
+	<meta name="og:image" content="./images/Logo_AlcHepNet_2_Crop.jpg">
+    <link rel="icon" href="favicon.ico">
+    <title>AlcHepNet - Observational Study - Executive Summary</title>
+	<link href="bootstrap.min.css" rel="stylesheet">
+	<link href="main.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light">
+        <a class="navbar-brand" href="index.html"><img src="AlcHepNet_Website/AlcHepNet_Logos/Logo_AlcHepNet_4_Edit_2.png" alt="AlcHepNet Logo"></a>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="dropdown-toggle btn" id="collaboration" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Collaboration</a>
+              <ul class="dropdown-menu" aria-labelledby="collaboration">
+                <li><a class="dropdown-item" href="about.html">About</a></li>
+                <li><a class="dropdown-item" href="participating-institutions.html">Participating Institutions</a></li>
+                <li><a class="dropdown-item" href="pis.html">PIs</a></li>
+                <li><a class="dropdown-item" href="dcc.html">DCC</a></li>
+                <li><a class="dropdown-item" href="committees.html">Committees</a></li>
+                <li><a class="dropdown-item" href="directory.html">Directory</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="dropdown-toggle btn" id="data-access" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data Access</a>
+              <ul class="dropdown-menu" aria-labelledby="data-access">
+                <li><a class="dropdown-item" href="data-system.html">Data System</a></li>
+                <li><a class="dropdown-item" href="policy.html">Policy</a></li>
+                <li><a class="dropdown-item" href="data-requesting-process.html">Data and Sample Requesting Process</a></li>
+                <li><a class="dropdown-item" href="codebook.html">Code Book</a></li>
+                <li><a class="dropdown-item" href="query-system.html">Query System</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="dropdown-toggle btn" id="publishing" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Publishing</a>
+              <ul class="dropdown-menu" aria-labelledby="publishing">
+                <li><a class="dropdown-item" href="publication-subcommittee.html">Publication Subcommittee</a></li>
+                <li><a class="dropdown-item" href="submission-of-publication-proposal.html">Submission of Publication Proposal</a></li>
+                <li><a class="dropdown-item" href="publications.html">Publication List</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown active">
+              <a class="dropdown-toggle btn" id="clinical-studies" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clinical Studies</a>
+              <ul class="dropdown-menu" aria-labelledby="clinical-studies">
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" id="itaald-trial" href="#">ITAALD Trial</a>
+                  <ul class="dropdown-menu" aria-labelledby="itaald-trial">
+                    <li><a class="dropdown-item" href="itaald-eligibility.html">Eligibility</a></li>
+                    <li><a class="dropdown-item" href="itaald-executive-summary.html">Executive Summary</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" id="legacy-studies" href="#">Legacy Studies</a>
+                  <ul class="dropdown-menu" aria-labelledby="legacy-studies">
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle" id="obs-study" href="#">Observational Study</a>
+                      <ul class="dropdown-menu" aria-labelledby="obs-study">
+                        <li><a class="dropdown-item" href="eligibility.html">Eligibility</a></li>
+                        <li><a class="dropdown-item active" href="executive-summary.html">Executive Summary</a></li>
+                      </ul>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle" id="int-trial" href="#">Interventional Trial</a>
+                      <ul class="dropdown-menu" aria-labelledby="int-trial">
+                        <li><a class="dropdown-item" href="interventional-eligibility.html">Eligibility</a></li>
+                        <li><a class="dropdown-item" href="interventional-executive-summary.html">Executive Summary</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="dropdown-toggle btn" id="data-commons" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data Commons</a>
+              <ul class="dropdown-menu" aria-labelledby="data-commons">
+                <li><a class="dropdown-item" href="ardac.html">ARDaC</a></li>
+                <li><a class="dropdown-item" href="design.html">Design</a></li>
+                <li><a class="dropdown-item" href="link.html">Link</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="dropdown-toggle btn" id="biorepository" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Biorepository</a>
+              <ul class="dropdown-menu" aria-labelledby="biorepository">
+                <li><a class="dropdown-item" href="team.html">Team</a></li>
+                <li><a class="dropdown-item" href="iugb.html">IUGB</a></li>
+                <li><a class="dropdown-item" href="samples-collected.html">Samples Collected</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="dropdown-toggle btn" id="news-training" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News and Training Opportunities</a>
+              <ul class="dropdown-menu" aria-labelledby="news-training">
+                <li><a class="dropdown-item" href="new-publications.html">New Publications</a></li>
+                <li><a class="dropdown-item" href="training-tlfb.html">Training TLFB</a></li>
+              </ul>
+            </li>
+          </ul>
+          <span class="navbar-text">
+            <small><a class="nav-link" href="https://redcap.uits.iu.edu/">IU REDCap</a></small><br>
+          </span>
+      </nav>
+    </header>
+
+    <main role="main marketing">
+      <div class="container">
+        <div class="row featurette">
+          <div class="col">
+            <h1>Executive Summary</h1>
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col">
+			<h2 class="eligibility-heading text-center">ALCOHOL-ASSOCIATED HEPATITIS NETWORK OBSERVATIONAL STUDY</h2>
+			<p class="lead">
+				The purpose of this
+				research study is to create
+				a clinical database and
+				bio-repository. To do this,
+				we will obtain blood,
+				urine, and stool samples
+				(e.g., biological samples)
+				and personal health
+				information from you to
+				use in future research
+				studies related to
+				alcohol-associated hepatitis or
+				other diseases. Part of
+				your blood sample will be
+				used to extract your DNA.
+				DNA is the genetic
+				material that gives us
+				unique characteristics. We
+				are doing this research
+				study because we are
+				trying to find out more
+				about how and why
+				illnesses related to
+				alcohol-associated hepatitis or
+				other diseases occur in
+				people. To do this, we will
+				study the biological
+				samples and personal
+				health information from
+				healthy and sick people.
+			</p>
+			<p class="lead">
+				A "biological sample" is
+				usually blood, but can be
+				any body fluid. "Personal
+				Health Information"
+				includes such items as
+				your name, age, gender,
+				race, and/or your medical
+				information. It can also
+				include data from
+				measurements and tests
+				that you had while
+				participating in another
+				research study or that
+				were done during the
+				course of your regular
+				medical care or doctor
+				visits.
+			</p>
+			<h4>Study Type</h4>
+			<p class="lead">
+				Prospective, observational study
+			</p>
+            <h4>Investigational Sites</h4>
+			<p class="lead">
+				Indiana University; University of Louisville affiliated hospitals in Kentucky; University of Massachusetts Medical 
+				Center in Massachusetts; Mayo Clinic in Rochester, Minnesota; Cleveland Clinic Foundation, Ohio; University of 
+				Pittsburgh Medical Center in Pennsylvania; University of Texas at Southwestern in Dallas, Texas; and Virginia 
+				Commonwealth University in Richmond, Virginia
+			</p>
+			<h4>Planned Number of Patients</h4>
+			<p class="lead">
+				Approximately 1260 (720 subjects with alcohol-associated hepatitis (AH), 
+				360 heavy drinkers without AH, and 180 healthy donors) will be enrolled.  
+			</p>
+			
+			<h4>Objectives</h4>
+			
+			
+			<p class="lead">
+				<span class="objective-title">PRIMARY OBJECTIVE:</span> To collect and store clinical data to facilitate 
+				investigations of the epidemiology, diagnosis, pathophysiology, natural history, 
+				and treatment of alcohol-associated hepatitis.
+			</p>
+			<p class="lead">
+				<span class="objective-title">SECONDARY OBJECTIVE: </span> To develop a bio-specimen bank comprised of plasma, 
+				DNA, and other biological specimens obtained from patients with alcohol-associated hepatitis, 
+				heavy drinkers without clinical liver disease, and healthy subjects to support translational 
+				research in the pathophysiology of alcohol-associated hepatitis
+			</p>
+			
+			<h4>Methodology</h4>
+				<p class="lead">
+					<span class="phase-title">Screening phase:</span> Subjects will be assessed for the eligibility criteria and a written informed consent 
+					will be obtained from the eligible subjects. 
+				</p>
+				<p class="lead">
+					<span class="phase-title">Study phase:</span>  Subjects will undergo history taking, physical examination, questionnaire administration, 
+					and laboratory tests. Biosamples including serum/plasma, peripheral mononuclear cells (at select sites), 
+					genomic DNA, stool samples (when available), urine, and liver tissue (where available) will be obtained. 
+				</p>
+				<p class="lead">
+					<span class="phase-title">Follow up phase:</span>  Alcohol-associated hepatitis subjects will be followed for 360 days, Heavy drinking controls for 
+					180 days, and healthy controls subjects for 1 day (at initial meeting for baseline).
+				</p>
+          </div>
+        </div>
+        <!-- <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col">
+          <h2 class="featurette-heading">AlcHepNet Organizations</h2>
+            <img class="org-logo img-fluid mx-auto" src="sites_20250610.png" alt="Participating organization logos"/>
+          </div>
+        </div> -->
+        <!-- <hr class="featurette-divider">
+
+        <div class="row featurette">
+        <div class="col text-center">
+			<p class="lead">AlcHepNet is a clinical and translational research initiative funded by the National Institute on Alcohol Abuse and Alcoholism (NIAAA), a division of NIH.</p>
+         </div>
+        </div> -->
+        <!-- /END THE FEATURETTES -->
+<hr class="featurette-divider">
+      </div><!-- /.container -->
+
+
+      <!-- FOOTER -->
+      <footer class="container">
+      <div class="row">
+        <div class="col text-left">
+        <p>&copy; 2017-2025 Alcohol-associated Hepatitis Network <!-- &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> --></p>
+        </div>
+         <div class="col text-right">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="jquery-3.3.1.slim.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+	<script src="main.js"></script>
+  </body>
+</html>

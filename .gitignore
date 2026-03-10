@@ -4,6 +4,9 @@
 .idea
 *.zip
 
+# Large video files (exceed GitHub's 100MB limit)
+src/News_Training/video/
+
 # Local .terraform directories
 **/.terraform/*
 

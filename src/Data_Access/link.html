@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Link">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>Link - AlcHepNet</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <style>
+    .link-card {
+      display: block;
+      padding: 1.25rem;
+      color: inherit;
+      text-decoration: none;
+      border-radius: 14px;
+      transition: all 0.25s ease;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(128, 171, 193, 0.12);
+      border: 1px solid rgba(128, 171, 193, 0.2);
+      height: 100%;
+      text-align: center;
+    }
+    .link-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(128, 171, 193, 0.2);
+      border-color: var(--navbar-bg-color);
+      background: linear-gradient(180deg, #fff 0%, rgba(128, 171, 193, 0.04) 100%);
+      text-decoration: none;
+    }
+    .link-card-icon {
+      font-size: 2rem;
+      color: #6b9ab3;
+      margin-bottom: 0.75rem;
+    }
+    .link-card strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 0.35rem;
+      color: #6b9ab3;
+    }
+    .link-card span {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+  </style>
+
+  <main role="main">
+    <div class="container marketing">
+      <div class="container">
+        <h3 class="section-title">ARDaC Resources</h3>
+        
+        <div class="row featurette">
+          <div class="col lead">
+            <h4>Access ARDaC</h4>
+            <div class="row mb-3">
+              <div class="col-md-4 mb-3">
+                <a href="https://portal.ardac.org/" target="_blank" class="link-card">
+                  <i class="fas fa-database link-card-icon"></i>
+                  <strong>ARDaC Portal</strong>
+                  <span>portal.ardac.org</span>
+                </a>
+              </div>
+              <div class="col-md-4 mb-3">
+                <a href="https://ardac.org/" target="_blank" class="link-card">
+                  <i class="fas fa-globe link-card-icon"></i>
+                  <strong>ARDaC Website</strong>
+                  <span>ardac.org</span>
+                </a>
+              </div>
+              <div class="col-md-4 mb-3">
+                <a href="https://github.com/jing-su/ardac" target="_blank" class="link-card">
+                  <i class="fab fa-github link-card-icon"></i>
+                  <strong>GitHub</strong>
+                  <span>github.com/jing-su/ardac</span>
+                </a>
+              </div>
+            </div>
+            
+            <h4 class="mt-4">Contact</h4>
+            <div class="row">
+              <div class="col-md-4">
+                <a href="mailto:ardac@iu.edu" class="link-card">
+                  <i class="fas fa-envelope link-card-icon"></i>
+                  <strong>Email</strong>
+                  <span>ardac@iu.edu</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if(href && !href.startsWith("http") && !href.startsWith("#")) {
+            if(href.startsWith("Data_Access/")) {
+              $(this).attr("href", href.replace("Data_Access/", ""));
+            } else {
+              $(this).attr("href", "../" + href);
+            }
+          }
+        });
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if(src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded and links updated');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>

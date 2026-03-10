@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Obs">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="favicon.ico">
+  <title>Observational Study - AlcHepNet</title>
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+<div class="container marketing">
+        <div class="row featurette">
+          <div class="col">
+            <h2 class="featurette-heading">Observational Study (OBS)</h2>
+            <p class="lead">This page is under construction. Content will be added soon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="popper.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <script src="simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("navbar.html", function() {
+        console.log('Navbar loaded');
+      });
+      $("#search-modal-include").load("search-modal.html");
+      $("#footer-include").load("footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>

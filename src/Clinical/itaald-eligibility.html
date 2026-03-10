@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Itaald Eligibility">
+  <meta name="author" content="AlcHepNet">
+  <link rel="icon" href="../favicon.ico">
+  <title>AlcHepNet - ITAALD Trial - Eligibility</title>
+  <link href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="navbar-include"></div>
+  <div id="search-modal-include"></div>
+
+  <main role="main">
+    <div class="container marketing">
+<div class="container">
+		<h3 class="section-title">ITAALD Clinical trial Eligibility and Enrollment Status:</h3>
+		<p class="text-danger lead"><strong>Trial is not yet recruiting</strong></p>
+        <div class="row featurette">
+          <div class="col lead">
+			<h4>Inclusion Criteria</h4>
+			<ol>
+				<li>Age ≥18, &lt;70</li>
+				<li>MELD 20-35 on day of randomization</li>
+				<li>Definitive or probable diagnosis as defined by the NIAAA criteria4, 5
+					<ol type="A">
+						<li>Onset of jaundice (defined as serum total bilirubin >3 mg/dL) within the prior 8 weeks</li>
+						<li>Ongoing consumption of > 40 gm (for females) and > 60 gm (for males) alcohol daily for 6 months or more with less than 8 weeks of abstinence before onset of jaundice</li>
+						<li>AST > 50 IU/L,</li>
+						<li>AST: ALT > 1.5</li>
+						<li>ALT and AST values < 400 IU/L</li>
+						<li>and/or histological evidence of AH*</li>
+					</ol>
+					<small>*In patients with possible AH or AH with confounding factors such as possible ischemic hepatitis, possible DILI, uncertain history of alcohol use (e.g., patient denies excessive alcohol use), and atypical/abnormal laboratory tests (e.g., AST < 50 IU/L or > 400 IU/L, AST/ALT ratio < 1.5), antinuclear antibody > 1:160 or SMA > 1:80, a standard of care liver biopsy may be performed during current hospital admission to confirm AH and exclude competing etiologies.</small>
+				</li>
+				<li>Females of childbearing (reproductive) potential must have a negative serum or urine pregnancy test at screening.</li>
+			</ol>
+
+			<h4>Exclusion Criteria</h4>
+			<ol>
+				<li>Active listing for liver transplantation before screening</li>
+				<li>MELD score <20 or > 35</li>
+				<li>Uncontrolled infection (persistent positive blood or other body fluid cultures despite 48 hours of antibiotic therapy)</li>
+				<li>Progressive hemodynamic compromise requiring intravenous pressors</li>
+				<li>Pneumonia as evidenced by clinical and radiological examination</li>
+				<li>Renal failure defined by estimated GFR <35 mL/min.</li>
+				<li>Clinically active C. diff infection</li>
+				<li>Evidence of other liver diseases (such as autoimmune hepatitis, primary biliary cholangiopathy, primary sclerosing cholangitis, ischemic, sepsis- or drug-induced liver disease)</li>
+				<li>History or presence of cancer (including hepatocellular carcinoma) other than non- melanoma skin cancer</li>
+				<li>Prior exposure to systemic corticosteroid (glucocorticoid) or immunosuppressive therapy for more than 2 days within the previous 30 days</li>
+				<li>Current use of naltrexone or acamprosate.</li>
+				<li>Clinically significant pancreatitis- abdominal pain, elevated lipase (> 3 X ULN), and at least edema of pancreas with fat-stranding on CT scan</li>
+				<li>Active gastrointestinal bleeding defined as hematemesis or melena with a decrease in hemoglobin more than 2 g/dl in 24 hours due to gastrointestinal bleeding, or with a decrease in mean arterial BP to < 65 mmHg</li>
+				<li>Significant concomitant medical illnesses (such as uncontrolled congestive heart failure or COPD or progressive multi-organ failure) as determined by the study investigator</li>
+				<li>Uncontrolled mental illness as determined by the study investigator</li>
+				<li>Uncontrolled HBV, HIV, or HCV infection with persistent viremia. However, subjects with controlled (undetectable viral load) HIV and HBV on viral suppressive therapies will be enrolled and subjects with history of HCV will be enrolled if they have evidence of SVR one year prior to enrollment</li>
+				<li>Active illicit opiates, cocaine, ketamine, or methamphetamine use in the last 30 days.</li>
+				<li>Uncontrolled diabetes mellitus with A1c > 9</li>
+				<li>Pregnancy or breastfeeding</li>
+				<li>Known allergy or intolerance to therapeutic agents to be tested</li>
+				<li>Unwillingness to stop alcohol use and to undergo AUD treatment</li>
+				<li>Unwillingness to either abstain from sexual intercourse, or if sexually active, use a reliable method of birth control during the study and for at least 30 days after the last dose of the study medication. Examples of acceptable birth control methods include double barrier method such as condom and occlusive cap (diaphragm or cervical cap) with spermicidal foam/gel/film/cream/suppository; birth control pills, patches, injections, or implants; intrauterine device (IUD); vasectomy and tubal ligation.</li>
+				<li>Participant has any condition or circumstance that adversely affects the participant, could cause noncompliance with treatment or visits, may impact the interpretation of clinical data, could cause bias, or may otherwise contraindicate the participant's participation in the study.</li>
+			</ol>
+          </div>
+        </div>
+        <!-- <hr class="featurette-divider"> -->
+      </div>
+
+
+    </div>
+  </main>
+
+  <div id="footer-include"></div>
+
+  <script src="../popper.min.js"></script>
+  <script src="../bootstrap.min.js"></script>
+  <script src="../simple-dropdown.js"></script>
+  <script>
+    $(function() {
+      $("#navbar-include").load("../navbar.html", function() {
+        $("#navbar-include a").each(function() {
+          var href = $(this).attr("href");
+          if (href && !href.startsWith("http") && !href.startsWith("#")) {
+            $(this).attr("href", "../" + href);
+          }
+        });
+        
+        $("#navbar-include img").each(function() {
+          var src = $(this).attr("src");
+          if (src && !src.startsWith("http") && !src.startsWith("data:") && !src.startsWith("/")) {
+            $(this).attr("src", "../" + src);
+          }
+        });
+        console.log('Navbar loaded');
+      });
+      $("#search-modal-include").load("../search-modal.html");
+      $("#footer-include").load("../footer.html", function() {
+        console.log('Footer loaded');
+      });
+    });
+  </script>
+</body>
+</html>
