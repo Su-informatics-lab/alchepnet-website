@@ -64,21 +64,53 @@ $(document).ready(function() {
     let searchResults = [];
     let currentPage = 1;
     let searchIndex = [];
+    let searchablePages = new Set();
+
+    function getRelativePrefix() {
+        const currentPath = window.location.pathname;
+        let pathParts = currentPath.split('/').filter(Boolean);
+
+        console.log('Current path:', currentPath);
+
+        const srcIndex = pathParts.lastIndexOf('src');
+        if (srcIndex !== -1) {
+            pathParts = pathParts.slice(srcIndex + 1);
+        }
+
+        if (pathParts.length > 0 && pathParts[pathParts.length - 1].includes('.')) {
+            pathParts = pathParts.slice(0, -1);
+        }
+
+        const prefix = '../'.repeat(pathParts.length);
+        console.log('Calculated relative prefix:', prefix || './');
+        return prefix;
+    }
 
     function getSearchIndexPath() {
-        const currentPath = window.location.pathname;
-        console.log('Current path:', currentPath);
-        
-        if (currentPath.includes('/src/')) {
-            const srcIndex = currentPath.indexOf('/src/');
-            const afterSrc = currentPath.substring(srcIndex + 5); // +5 for '/src/'
-            const depth = (afterSrc.match(/\//g) || []).length;
-            const path = '../'.repeat(depth) + 'searchIndex.json';
-            console.log('Calculated path:', path);
-            return path;
+        return `${getRelativePrefix()}searchIndex.json`;
+    }
+
+    function normalizeInternalPath(url) {
+        if (!url || url.startsWith('http') || url.startsWith('#') || url.startsWith('mailto:')) {
+            return null;
         }
-        
-        return 'searchIndex.json';
+
+        return url.replace(/^(\.\.\/)+/, '').replace(/^\.\//, '').replace(/^\//, '');
+    }
+
+    function refreshSearchablePages() {
+        searchablePages = new Set();
+
+        $('#navbar-include a').each(function() {
+            const href = $(this).attr('href');
+            const normalizedHref = normalizeInternalPath(href);
+
+            if (normalizedHref && normalizedHref.endsWith('.html')) {
+                searchablePages.add(normalizedHref);
+            }
+        });
+
+        console.log('Searchable navbar pages:', Array.from(searchablePages));
     }
 
     $.getJSON(getSearchIndexPath(), function(data) {
@@ -101,27 +133,17 @@ $(document).ready(function() {
         const start = (currentPage - 1) * SEARCH_PAGE_SIZE;
         const end = start + SEARCH_PAGE_SIZE;
         const pageResults = searchResults.slice(start, end);
+        const relativePrefix = getRelativePrefix();
         let html = '';
+
         pageResults.forEach(item => {
             let correctUrl = item.url;
-            const currentPath = window.location.pathname;
-            
-            // add debug info
+
             console.log('Original URL:', item.url);
-            console.log('Current path:', currentPath);
-            
-            if (currentPath.includes('/src/')) {
-                const srcIndex = currentPath.indexOf('/src/');
-                const afterSrc = currentPath.substring(srcIndex + 5); // +5 for '/src/'
-                const depth = (afterSrc.match(/\//g) || []).length;
-                
-                console.log('After src part:', afterSrc);
-                console.log('Calculated depth:', depth);
-                
-                if (!item.url.startsWith('http') && !item.url.startsWith('/')) {
-                    correctUrl = '../'.repeat(depth) + item.url;
-                    console.log('Corrected URL:', correctUrl);
-                }
+
+            if (!item.url.startsWith('http') && !item.url.startsWith('/')) {
+                correctUrl = `${relativePrefix}${item.url}`;
+                console.log('Corrected URL:', correctUrl);
             }
             
             html += `<div class="search-result-item mb-3">
@@ -171,9 +193,12 @@ $(document).ready(function() {
         }
         
         const results = searchIndex.filter(item =>
-            (item.title && item.title.toLowerCase().includes(keyword)) ||
-            (item.snippet && item.snippet.toLowerCase().includes(keyword)) ||
-            (item.content && item.content.toLowerCase().includes(keyword))
+            searchablePages.has(normalizeInternalPath(item.url)) &&
+            (
+                (item.title && item.title.toLowerCase().includes(keyword)) ||
+                (item.snippet && item.snippet.toLowerCase().includes(keyword)) ||
+                (item.content && item.content.toLowerCase().includes(keyword))
+            )
         );
         showSearchModal(results);
     });
@@ -181,5 +206,11 @@ $(document).ready(function() {
     // Clear search input when modal is closed
     $('#searchModal').on('hidden.bs.modal', function() {
         $('#searchInput').val('');
+    });
+
+    $(document).ajaxComplete(function(event, xhr, settings) {
+        if (settings && settings.url && settings.url.includes('navbar.html')) {
+            refreshSearchablePages();
+        }
     });
 }); 
