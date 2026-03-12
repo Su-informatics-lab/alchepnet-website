@@ -11,6 +11,8 @@ from pathlib import Path
 
 SRC_DIR = Path(__file__).parent / "src"
 OUTPUT_FILE = SRC_DIR / "searchIndex.json"
+PUBLICATIONS_JSON = SRC_DIR / "Publishing" / "doc" / "all_publications.json"
+PUBLICATIONS_URL = "Publishing/publications.html"
 
 # Pages to exclude from index
 EXCLUDE_PATTERNS = [
@@ -77,6 +79,49 @@ def get_relative_url(filepath: Path) -> str:
     return str(rel).replace("\\", "/")
 
 
+def load_publications_index_entries():
+    """Create search entries from the publications JSON data."""
+    if not PUBLICATIONS_JSON.exists():
+        return []
+
+    try:
+        with open(PUBLICATIONS_JSON, "r", encoding="utf-8") as f:
+            publications_data = json.load(f)
+    except Exception as e:
+        print(f"Warning: Could not read publications JSON {PUBLICATIONS_JSON}: {e}")
+        return []
+
+    publications_by_year = publications_data.get("publicationsByYear", {})
+    entries = []
+
+    for year in sorted(publications_by_year.keys(), reverse=True):
+        publications = publications_by_year.get(year, [])
+        if not publications:
+            continue
+
+        publication_texts = [
+            pub.get("content", "").strip()
+            for pub in publications
+            if pub.get("content", "").strip()
+        ]
+        if not publication_texts:
+            continue
+
+        content = f"AlcHepNet Publications {year}. " + " ".join(publication_texts)
+        snippet = " ".join(publication_texts[:2])
+        if len(snippet) > 250:
+            snippet = snippet[:250] + "..."
+
+        entries.append({
+            "title": f"AlcHepNet Publications ({year})",
+            "url": PUBLICATIONS_URL,
+            "snippet": snippet,
+            "content": content,
+        })
+
+    return entries
+
+
 def build_index():
     """Build search index from all HTML files."""
     index = []
@@ -106,6 +151,8 @@ def build_index():
             "snippet": snippet,
             "content": content,
         })
+
+    index.extend(load_publications_index_entries())
 
     return index
 

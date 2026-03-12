@@ -2,9 +2,17 @@
   "grantInfo": {
     "grantNumber": "U01AA026980",
     "pi": "McClain, Craig J.",
-    "totalPublications": 491
+    "totalPublications": 496
   },
   "publicationsByYear": {
+    "2026": [
+      {
+        "content": "Nguyen CM, Blaney HL, Su J, Jiang S, Li Y, Li Y, Gawrieh S, Tu W, Liangpunsakul S. Real-world impact of AUD pharmacotherapy on healthcare utilization, cost, and cost-effectiveness in the US. Hepatology.:10-97."
+      },
+      {
+        "content": "Nguyen CM, Su J, Li Y, Healey R, Jiang S, Li J, Chalasani N, Gawrieh S, Liangpunsakul S, Tu W. Short-term costs of alcohol-associated hepatitis care in different clinical settings. Hepatology Communications. 2026 Feb 1;10(2):e0634."
+      }
+    ],
     "2025": [
       {
         "content": "Singal AK, Piano S. Tapered Corticosteroids in Severe Alcohol-Associated Hepatitis: A Strategy to Maximize Benefit and Minimize Harm. Am J Gastroenterol. 2025 Dec 1;120(12):2761–2763."
@@ -26,6 +34,12 @@
       },
       {
         "content": "Dasarathy S, Tu W, Welch N, Gawrieh S, Yu Y, Tang Q, Kettler C, Sanyal AJ, Szabo G, Shah VH, Bataller R, Nagy LE, McClain CJ, Chalasani N, Kerr T, Mitchell MC; AlcHepNet Investigators. Natural history and development of a novel composite endpoint in patients with alcohol-associated hepatitis: Data from a prospective multicenter study. Hepatology. 2025 Sep 9. PMID: 40924794."
+      },
+      {
+        "content": "Dasarathy S, Tu W, Welch N, Gawrieh S, Yu Y, Tang Q, Kettler C, Sanyal AJ, Szabo G, Shah VH, Bataller R. Natural history and development of a novel composite endpoint in patients with alcohol-associated hepatitis: Data from a prospective multicenter study. Hepatology. 2025 Sep 9:10-97."
+      },
+      {
+        "content": "Vilar-Gomez E, Nephew L, Gawrieh S, Vuppalanchi R, Kettler C, Pike F, Tu W, Samala N, Liangpunsakul S, Chalasani N. Healthy eating and physical activity significantly lower sex-specific alcohol-attributable liver mortality in the United States. Journal of Hepatology. 2025 Aug 27."
       },
       {
         "content": "Thakurdesai A, Kumari A, Shay H, Elgharabawy K, Winrich EJ, Zhang W, Jackson A, Cave MC, Kong M, Zhang X, Singal AK, McClain CJ, Vatsalya V. Chronic and heavy drinking, nutrition status, and progression of liver injury negatively affect the mortality risk in patients suffering from alcohol-associated hepatitis. J Clin Med. 2025 Aug 31;14(17)."
@@ -86,6 +100,9 @@
       },
       {
         "content": "Patidar KR, Tu W, Cotter TG, Simonetto DA, Asgharpour A, Jan MY, Tang Q, Yu Y, Li Y, Taiwo M, Thevkar Nagesh P, Dasarathy S, Kamath PS, McClain CJ, Chalasani N, Szabo G, Bataller R, Mitchell M, Mehal WZ, Nagy LE, Shah VH, Gawrieh S, Sanyal AJ; AlcHepNet Investigators. Acute kidney injury in severe alcohol-associated hepatitis treated with anakinra plus zinc or prednisone. Hepatology. 2025 Apr 1;81(4):1256–1268. PMID: 39028887."
+      },
+      {
+        "content": "Patidar KR, Tu W, Cotter TG, Simonetto DA, Asgharpour A, Jan MY, Tang Q, Yu Y, Li Y, Taiwo M, Nagesh PT. Acute kidney injury in severe alcohol-associated hepatitis treated with anakinra plus zinc or prednisone. Hepatology. 2025 Apr 1;81(4):1256-68."
       },
       {
         "content": "Arab JP, Díaz LA, Rehm J, Im G, Arrese M, Kamath PS, Lucey MR, Mellinger J, Thiele M, Thursz M, Bataller R, Burton R, Chokshi S, Francque SM, Krag A, Lackner C, Lee BP, Liangpunsakul S, MacClain C, Mandrekar P, Mitchell MC, Morgan MY, Morgan TR, Pose E, Shah VH, Shawcross D, Sheron N, Singal AK, Stefanescu H, Terrault N, Trépo E, Moreno C, Louvet A, Mathurin P. Metabolic dysfunction and alcohol-related liver disease (MetALD): Position statement by an expert panel on alcohol-related liver disease. J Hepatol. 2025 Apr;82(4):744–756. PMID: 39608457."

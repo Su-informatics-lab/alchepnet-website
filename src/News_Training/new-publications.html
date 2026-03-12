@@ -15,12 +15,10 @@
     .page-header {
       margin-bottom: 2rem;
     }
-    .page-header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
+    .page-header .section-title {
       margin-bottom: 0.5rem;
     }
-    .section-title {
+    .subsection-title {
       font-size: 1.8rem;
       font-weight: 700;
       color: #333;
@@ -167,6 +165,54 @@
       background: var(--btn-primary-bg, #80abc1);
       color: white;
     }
+    .year-section {
+      margin-bottom: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+    .year-section[open] {
+      border-color: #2e3b92;
+    }
+    .year-header {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #2e3b92;
+      cursor: pointer;
+      padding: 1rem 1.5rem;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      user-select: none;
+    }
+    .year-header::-webkit-details-marker {
+      display: none;
+    }
+    .year-header::before {
+      content: "▶";
+      font-size: 0.9rem;
+      transition: transform 0.2s;
+      margin-right: 0.5rem;
+    }
+    .year-section[open] .year-header::before {
+      transform: rotate(90deg);
+    }
+    .year-header:hover {
+      background-color: #f8f9fa;
+    }
+    .year-count {
+      font-size: 0.85rem;
+      font-weight: normal;
+      color: #666;
+      background: #f0f0f0;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+    .year-content {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+    }
     
     .empty-state {
       text-align: center;
@@ -204,27 +250,36 @@
   <main role="main">
     <div class="container marketing">
       <div class="page-header">
-        <h1>News & Publications</h1>
+        <h1 class="section-title">News & Publications</h1>
         <p class="lead">Latest updates, announcements, and publications from AlcHepNet</p>
       </div>
 
       <!-- News Section -->
       <section style="margin-bottom: 4rem;">
-        <h2 class="section-title"><i class="fas fa-newspaper"></i> Latest News & Announcements</h2>
-        
-        <div class="empty-state">
-          <i class="fas fa-newspaper"></i>
-          <p>xxxx</p>
+        <h2 class="subsection-title"><i class="fas fa-newspaper"></i> Latest News & Announcements</h2>
+
+        <div class="news-item">
+          <div class="news-date">
+            <span class="news-date-day">Jan</span>
+            <span class="news-date-month">2026</span>
+            <span class="news-date-year">News</span>
+          </div>
+          <div class="news-content">
+            <div class="news-title">ITAALD Trial Enrollment Began</div>
+            <div class="news-category">Clinical Trial</div>
+            <p class="news-description">The ITAALD trial started enrollment in January 2026. The first two patients were enrolled at the Cleveland Clinic. Congratulations to the Cleveland Clinic team!</p>
+          </div>
         </div>
       </section>
 
       <!-- Recent Publications Section -->
       <section>
-        <h2 class="section-title"><i class="fas fa-book-open"></i> Recent Publications</h2>
-        
-        <div class="empty-state">
-          <i class="fas fa-book-open"></i>
-          <p>xxxx</p>
+        <h2 class="subsection-title"><i class="fas fa-book-open"></i> Recent Publications</h2>
+        <div id="recentPublicationsContainer">
+          <div class="empty-state">
+            <i class="fas fa-book-open"></i>
+            <p>Loading recent publications...</p>
+          </div>
         </div>
       </section>
 
@@ -237,7 +292,123 @@
   <script src="../bootstrap.min.js"></script>
   <script src="../simple-dropdown.js"></script>
   <script>
+    function extractPublicationParts(content) {
+      const firstBreak = content.indexOf('. ');
+      if (firstBreak === -1) {
+        return {
+          authors: '',
+          title: content,
+          journal: '',
+        };
+      }
+
+      const authors = content.slice(0, firstBreak + 1).trim();
+      const remainder = content.slice(firstBreak + 2).trim();
+      const secondBreak = remainder.indexOf('. ');
+
+      if (secondBreak === -1) {
+        return {
+          authors: authors,
+          title: remainder,
+          journal: '',
+        };
+      }
+
+      return {
+        authors: authors,
+        title: remainder.slice(0, secondBreak).trim(),
+        journal: remainder.slice(secondBreak + 2).trim(),
+      };
+    }
+
+    function extractPmid(content) {
+      const match = content.match(/PMID:\s*(\d+)/i);
+      return match ? match[1] : null;
+    }
+
+    function extractJournalName(journalText) {
+      const match = journalText.match(/^([^.;]+(?:\.[^.;]+)*)/);
+      return match ? match[1].trim() : 'Publication';
+    }
+
+    function buildPublicationCard(publication, year) {
+      const parts = extractPublicationParts(publication.content);
+      const pmid = extractPmid(publication.content);
+      const journalName = extractJournalName(parts.journal);
+      const links = [];
+
+      if (pmid) {
+        links.push(
+          `<a class="publication-link" href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener noreferrer">PubMed</a>`
+        );
+      }
+
+      return `
+        <div class="publication-item">
+          <div class="publication-meta">
+            <span><i class="far fa-calendar-alt"></i> ${year}</span>
+            <span><i class="fas fa-book"></i> ${journalName}</span>
+          </div>
+          <div class="publication-title">${parts.title || publication.content}</div>
+          <div class="publication-authors">${parts.authors}</div>
+          <div class="publication-journal">${parts.journal}</div>
+          ${links.length ? `<div class="publication-links">${links.join('')}</div>` : ''}
+        </div>
+      `;
+    }
+
+    function renderRecentPublications() {
+      const yearsToShow = ['2026', '2025'];
+
+      $.getJSON('../Publishing/doc/all_publications.json')
+        .done(function(data) {
+          const yearSections = [];
+
+          yearsToShow.forEach(function(year, index) {
+            const publications = data.publicationsByYear[year] || [];
+
+            if (!publications.length) {
+              return;
+            }
+
+            const publicationCards = publications.map(function(publication) {
+              return buildPublicationCard(publication, year);
+            }).join('');
+
+            yearSections.push(`
+              <details class="year-section" ${index === 0 ? 'open' : ''}>
+                <summary class="year-header">${year} <span class="year-count">${publications.length} publications</span></summary>
+                <div class="year-content">
+                  ${publicationCards}
+                </div>
+              </details>
+            `);
+          });
+
+          if (!yearSections.length) {
+            $('#recentPublicationsContainer').html(`
+              <div class="empty-state">
+                <i class="fas fa-book-open"></i>
+                <p>No recent publications available.</p>
+              </div>
+            `);
+            return;
+          }
+
+          $('#recentPublicationsContainer').html(yearSections.join(''));
+        })
+        .fail(function() {
+          $('#recentPublicationsContainer').html(`
+            <div class="empty-state">
+              <i class="fas fa-book-open"></i>
+              <p>Unable to load recent publications.</p>
+            </div>
+          `);
+        });
+    }
+
     $(function() {
+      renderRecentPublications();
       $("#navbar-include").load("../navbar.html", function() {
         $("#navbar-include a").each(function() {
           var href = $(this).attr("href");
