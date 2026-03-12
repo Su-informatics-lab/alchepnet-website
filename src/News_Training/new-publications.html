@@ -15,12 +15,10 @@
     .page-header {
       margin-bottom: 2rem;
     }
-    .page-header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
+    .page-header .section-title {
       margin-bottom: 0.5rem;
     }
-    .section-title {
+    .subsection-title {
       font-size: 1.8rem;
       font-weight: 700;
       color: #333;
@@ -204,27 +202,57 @@
   <main role="main">
     <div class="container marketing">
       <div class="page-header">
-        <h1>News & Publications</h1>
+        <h1 class="section-title">News & Publications</h1>
         <p class="lead">Latest updates, announcements, and publications from AlcHepNet</p>
       </div>
 
       <!-- News Section -->
       <section style="margin-bottom: 4rem;">
-        <h2 class="section-title"><i class="fas fa-newspaper"></i> Latest News & Announcements</h2>
-        
-        <div class="empty-state">
-          <i class="fas fa-newspaper"></i>
-          <p>xxxx</p>
+        <h2 class="subsection-title"><i class="fas fa-newspaper"></i> Latest News & Announcements</h2>
+
+        <div class="news-item">
+          <div class="news-date">
+            <span class="news-date-day">Jan</span>
+            <span class="news-date-month">2026</span>
+            <span class="news-date-year">News</span>
+          </div>
+          <div class="news-content">
+            <div class="news-title">ITAALD Trial Enrollment Began</div>
+            <div class="news-category">Clinical Trial</div>
+            <p class="news-description">The ITAALD trial started enrollment in January 2026. The first two patients were enrolled at the Cleveland Clinic. Congratulations to the Cleveland Clinic team!</p>
+          </div>
         </div>
       </section>
 
       <!-- Recent Publications Section -->
       <section>
-        <h2 class="section-title"><i class="fas fa-book-open"></i> Recent Publications</h2>
-        
-        <div class="empty-state">
-          <i class="fas fa-book-open"></i>
-          <p>xxxx</p>
+        <h2 class="subsection-title"><i class="fas fa-book-open"></i> Recent Publications</h2>
+
+        <div class="publication-item">
+          <div class="publication-meta">
+            <span><i class="far fa-calendar-alt"></i> Feb 1, 2026</span>
+            <span><i class="fas fa-book"></i> Hepatology Communications</span>
+          </div>
+          <div class="publication-title">Short-term costs of alcohol-associated hepatitis care in different clinical settings</div>
+          <div class="publication-authors">Nguyen CM, Su J, Li Y, Healey R, Jiang S, Li J, Chalasani N, Gawrieh S, Liangpunsakul S, Tu W</div>
+          <div class="publication-journal">Hepatology Communications. 2026 Feb 1;10(2):e0634.</div>
+          <div class="publication-links">
+            <a class="publication-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11781763/" target="_blank" rel="noopener noreferrer">View Paper</a>
+            <a class="publication-link" href="https://journals.lww.com/hepcomm/fulltext/2025/02010/short_term_costs_of_alcohol_associated_hepatitis.10.aspx" target="_blank" rel="noopener noreferrer">Journal Link</a>
+          </div>
+        </div>
+
+        <div class="publication-item">
+          <div class="publication-meta">
+            <span><i class="far fa-calendar-alt"></i> 2026</span>
+            <span><i class="fas fa-book"></i> Hepatology</span>
+          </div>
+          <div class="publication-title">Real-world impact of AUD pharmacotherapy on healthcare utilization, cost, and cost-effectiveness in the US</div>
+          <div class="publication-authors">Nguyen CM, Blaney HL, Su J, Jiang S, Li Y, Li Y, Gawrieh S, Tu W, Liangpunsakul S</div>
+          <div class="publication-journal">Hepatology. :10-97.</div>
+          <div class="publication-links">
+            <a class="publication-link" href="../Publishing/publications.html" target="_blank" rel="noopener noreferrer">Publication List</a>
+          </div>
         </div>
       </section>
 
