@@ -902,7 +902,7 @@
         bio: "PI, Addiction Psychiatry"
       },
       {
-        name: "Vatsalya Vatsalya, PhD",
+        name: "Vatsalya Vatsalya, MD",
         roles: {
           "Study Staff": "Investigator",
           "Clinical Sub-committee": "Member"
@@ -928,6 +928,76 @@
         email: "craig.mcclain@louisville.edu",
         image: "../images/admin/Craig McClain.jpg",
         bio: "MPI, DSC Member"
+      },
+      {
+        name: "Luis Marsano, MD",
+        role: "Investigator",
+        group: "Study Staff",
+        institution: "University of Louisville",
+        title: "Investigator",
+        email: "",
+        image: "../images/admin/Luis Marsano.jpg",
+        bio: "Co-I"
+      },
+      {
+        name: "Lorenzo Leggio, MD, PhD",
+        role: "Consultant",
+        group: "Study Staff",
+        institution: "University of Louisville",
+        title: "Consultant",
+        email: "",
+        image: "../images/admin/Lorenzo Leggio.jpg",
+        bio: "Consultant"
+      },
+      {
+        name: "Andrea Reyes-Vegas, MD",
+        role: "Investigator",
+        group: "Study Staff",
+        institution: "University of Louisville",
+        title: "Investigator",
+        email: "andrea.reyesvega@louisville.edu",
+        image: "../images/admin/Andrea Reyes Vega.jpg",
+        bio: "Co-I"
+      },
+      {
+        name: "Josiah Hardesty, PhD",
+        role: "Investigator",
+        group: "Study Staff",
+        institution: "University of Louisville",
+        title: "Investigator",
+        email: "",
+        image: "../images/admin/Josiah Hardesty.jpg",
+        bio: "Co-I"
+      },
+      {
+        name: "Leila Gobejishvili, PhD",
+        role: "Investigator",
+        group: "Study Staff",
+        institution: "University of Louisville",
+        title: "Investigator",
+        email: "",
+        image: "../images/admin/Leila Gobejishvili.jpg",
+        bio: "Co-I"
+      },
+      {
+        name: "Wenke Feng, PhD",
+        role: "Consultant",
+        group: "Study Staff",
+        institution: "University of Louisville",
+        title: "Consultant",
+        email: "",
+        image: "../images/admin/Wenke Feng.png",
+        bio: "Consultant, Tulane"
+      },
+      {
+        name: "Gyongyi Szabo, MD, PhD",
+        role: "Consultant",
+        group: "Study Staff",
+        institution: "University of Louisville",
+        title: "Consultant",
+        email: "",
+        image: "../images/admin/Gyongyi Szabo.jpg",
+        bio: "Consultant, Harvard"
       },
       // University of Louisville Coordinators
       {
@@ -1146,7 +1216,7 @@
                   ${roleBadges}
                 </div>
                 <div class="researcher-institution">${researcher.institution}</div>
-                <a href="mailto:${researcher.email}" class="researcher-email">${researcher.email}</a>
+                ${researcher.email ? `<a href="mailto:${researcher.email}" class="researcher-email">${researcher.email}</a>` : ''}
               </div>
             </div>
             <p class="researcher-bio">${bioText}</p>
