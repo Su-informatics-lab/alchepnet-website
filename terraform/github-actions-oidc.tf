@@ -2,6 +2,8 @@ data "aws_iam_openid_connect_provider" "github_actions" {
   url = "https://token.actions.githubusercontent.com"
 }
 
+data "aws_caller_identity" "github_actions" {}
+
 data "aws_iam_policy_document" "github_actions_assume_role" {
   statement {
     effect  = "Allow"
@@ -21,7 +23,7 @@ data "aws_iam_policy_document" "github_actions_assume_role" {
     condition {
       test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:Su-informatics-lab/alchepnet-website:ref:refs/heads/develop"]
+      values   = ["repo:${var.repository}:ref:refs/heads/develop"]
     }
   }
 }
@@ -48,7 +50,7 @@ data "aws_iam_policy_document" "github_actions_deploy" {
   statement {
     effect    = "Allow"
     actions   = ["cloudfront:CreateInvalidation"]
-    resources = ["arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/EAIFBVSW6O5UF"]
+    resources = ["arn:aws:cloudfront::${data.aws_caller_identity.github_actions.account_id}:distribution/EAIFBVSW6O5UF"]
   }
 }
 
