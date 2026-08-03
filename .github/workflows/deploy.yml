@@ -23,9 +23,9 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::233907574649:role/github-actions-alchepnet-website-deployer
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-actions-alchepnet-website-deployer
           aws-region: us-east-1
-          allowed-account-ids: 233907574649
+          allowed-account-ids: ${{ secrets.AWS_ACCOUNT_ID }}
           role-duration-seconds: 900
           role-session-name: GitHubActions-${{ github.run_id }}
 
