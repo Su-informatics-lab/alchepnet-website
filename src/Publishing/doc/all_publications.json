@@ -7,7 +7,7 @@
   "publicationsByYear": {
     "2026": [
       {
-        "content": "Nguyen CM, Blaney HL, Su J, Jiang S, Li Y, Li Y, Gawrieh S, Tu W, Liangpunsakul S. Real-world impact of AUD pharmacotherapy on healthcare utilization, cost, and cost-effectiveness in the US. Hepatology.:10-97."
+        "content": "Nguyen CM, Blaney HL, Su J, Jiang S, Li Y, Li Y, Gawrieh S, Tu W, Liangpunsakul S. Real-world impact of AUD pharmacotherapy on healthcare utilization, cost, and cost-effectiveness in the United States. Hepatology. 2026 Feb 24. doi: 10.1097/HEP.0000000000001720. Epub ahead of print. PMID: 41746332."
       },
       {
         "content": "Fondevila MF, Kreimeyer H, Hsu CL, Tamargo-Azpilicueta J, Day LZ, Gritsenko M, Attah K, Cabré N, Harberts A, Tonetti FR, Yang Y, Yamazaki T, Schöler D, Eguileor A, Blasio C, Meijnikman AS, Zhang X, Garcia-Carbonell R, Hook V, Zhou E, Sun Z, Jacobs JM, Turner JR, Llorente C; AlcHepNet Investigators; Glass CK, Stärkel P, Reinheckel T, Diaz-Moreno I, Gonzalez DJ, Schnabl B. Macrophage-derived cathepsin B disrupts intestinal tight junctions through occludin degradation and promotes alcohol-associated liver disease. J Hepatol. 2026 Feb 5:S0168-8278(26)00026-7. doi: 10.1016/j.jhep.2026.01.013. Epub ahead of print. PMID: 41654223."
@@ -32,6 +32,12 @@
       },
       {
         "content": "Y. Li, J. Guo, S. Gawrieh, W. Shen, Y. Zang, and W. Tu, “ A Bayesian Optimal Adaptive Clinical Trial Design for Sequentially Integrated Therapies,” Statistics in Medicine 45, no. 18-19 (2026): e70684, https://doi.org/10.1002/sim.70684."
+      },
+      {
+        "content": "Ventura-Cots M, Clemente A, Alvarado-Tapias E, Ravi S, Cuyas B, Tanguy M, Poca M, Jager M, Fernández-Carrillo C, Arteel GE, Villagrasa A, Aguilar-Amorós A, Argemi J, Abraldes JG, Bosques F, Brown RS Jr, Garcia-Taso G, Genesca J, Schanbl B, Mathurin P, Louvet A, Lucey MR, Shawcross DL, Verna E, Gawrieh S, Dasarathy S, Tu W, Kamath PS, Chalasani NP, McClain CJ, Szabo G, Tang Q, Barton B, Nagy LE, Shah VH, Sanyal AJ, Mitchell MC, Singal AK, Soriano G, Rautou PE, Bataller R. Mean arterial pressure at admission predicts 28-day mortality in patients with severe alcohol-associated hepatitis. Clin Transl Gastroenterol. 2026 Aug 1;17(8):e01053. doi: 10.14309/ctg.0000000000001053. Epub 2026 Jun 3. PMID: 42235929; PMCID: PMC13502771."
+      },
+      {
+        "content": "Dasarathy S, Tu W, Welch N, Gawrieh S, Yu Y, Tang Q, Kettler C, Sanyal AJ, Szabo G, Shah VH, Bataller R, Nagy LE, McClain CJ, Chalasani N, Kerr T, Mitchell MC; AlcHepNet Investigators. Natural history and development of a novel composite endpoint in patients with alcohol-associated hepatitis: Data from a prospective multicenter study. Hepatology. 2026 Jun 1;83(6):1469-1482. doi: 10.1097/HEP.0000000000001513. Epub 2025 Sep 9. PMID: 40924794; PMCID: PMC12672022."
       }
     ],
     "2025": [
@@ -54,16 +60,10 @@
         "content": "Warner DR, Warner JB, Hardesty JE, Abdelfadil Y, Soni C, Bauer P, Maldonado C, McClain CJ, Kirpich IA. Hepatocyte-specific transcriptional responses to liver-targeted delivery of a soluble epoxide hydrolase inhibitor in a mouse model of alcohol-associated liver disease. Biology (Basel). 2025 Sep 13;14(9)."
       },
       {
-        "content": "Dasarathy S, Tu W, Welch N, Gawrieh S, Yu Y, Tang Q, Kettler C, Sanyal AJ, Szabo G, Shah VH, Bataller R, Nagy LE, McClain CJ, Chalasani N, Kerr T, Mitchell MC; AlcHepNet Investigators. Natural history and development of a novel composite endpoint in patients with alcohol-associated hepatitis: Data from a prospective multicenter study. Hepatology. 2025 Sep 9. PMID: 40924794."
-      },
-      {
-        "content": "Dasarathy S, Tu W, Welch N, Gawrieh S, Yu Y, Tang Q, Kettler C, Sanyal AJ, Szabo G, Shah VH, Bataller R. Natural history and development of a novel composite endpoint in patients with alcohol-associated hepatitis: Data from a prospective multicenter study. Hepatology. 2025 Sep 9:10-97."
-      },
-      {
         "content": "Vilar-Gomez E, Nephew L, Gawrieh S, Vuppalanchi R, Kettler C, Pike F, Tu W, Samala N, Liangpunsakul S, Chalasani N. Healthy eating and physical activity significantly lower sex-specific alcohol-attributable liver mortality in the United States. Journal of Hepatology. 2025 Aug 27."
       },
       {
-        "content": "Thakurdesai A, Kumari A, Shay H, Elgharabawy K, Winrich EJ, Zhang W, Jackson A, Cave MC, Kong M, Zhang X, Singal AK, McClain CJ, Vatsalya V. Chronic and heavy drinking, nutrition status, and progression of liver injury negatively affect the mortality risk in patients suffering from alcohol-associated hepatitis. J Clin Med. 2025 Aug 31;14(17)."
+        "content": "Thakurdesai A, Kumari A, Shay H, Elgharabawy K, Winrich EJ, Zhang W, Jackson A, Cave MC, Kong M, Zhang X, Singal AK, McClain CJ, Vatsalya V. Chronic and heavy drinking, nutrition status, and progression of liver injury negatively affect the mortality risk in patients suffering from alcohol-associated hepatitis. J Clin Med. 2025 Aug 31;14(17):6157. doi: 10.3390/jcm14176157. PMID: 40943916; PMCID: PMC12429474."
       },
       {
         "content": "Dlugas H, Zhang X, Kim S. Comparative analysis of continuous similarity measures for compound identification in mass spectrometry-based metabolomics. Chemom Intell Lab Syst. 2025 Aug 15;263."
